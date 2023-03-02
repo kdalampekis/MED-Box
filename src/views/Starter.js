@@ -1,5 +1,4 @@
 import { Col, Row } from "reactstrap";
-import SalesChart from "../components/dashboard/SalesChart";
 import Feeds from "../components/dashboard/Feeds";
 import ProjectTables from "../components/dashboard/ProjectTable";
 import TopCards from "../components/dashboard/TopCards";
@@ -8,9 +7,8 @@ import bg1 from "../assets/images/bg/bg1.jpg";
 import bg2 from "../assets/images/bg/bg2.jpg";
 import bg3 from "../assets/images/bg/bg3.jpg";
 import bg4 from "../assets/images/bg/bg4.jpg";
-import Clock from "../components/dashboard/Clock";
 import React, {useEffect, useState} from "react";
-
+import {getLenght} from "../components/dashboard/ProjectData";
 const BlogData = [
   {
     image: bg1,
@@ -52,6 +50,7 @@ function Starter(){
     setInterval(() => setDateState(new Date()), 30000);
   }, []);
 
+
   let date = dateState.toLocaleDateString('en-GB', {
     day: 'numeric',
     month: 'short',
@@ -64,33 +63,12 @@ function Starter(){
     hour12: true,
   });
 
+  let dataLength = getLenght();
+
   return (
     <div>
-      {/***Clock***/}
-      <Row>
-        <Clock/>
-      </Row>
       {/***Top Cards***/}
-      <Row>
-        <h3>This is where the clock component will be called</h3>
-        <Col sm="6" lg="3">
-          <TopCards
-            bg="bg-light-success text-success"
-            title="Profit"
-            subtitle="Yearly Earning"
-            earning="$21k"
-            icon="bi bi-clock"
-          />
-        </Col>
-        <Col sm="6" lg="3">
-          <TopCards
-            bg="bg-light-danger text-danger"
-            title="Refunds"
-            subtitle="Refund given"
-            earning="$1k"
-            icon="bi bi-calendar"
-          />
-        </Col>
+      {/*<Row>
         <Col sm="6" lg="3">
           <TopCards
             bg="bg-light-warning text-warning"
@@ -109,7 +87,7 @@ function Starter(){
             icon="bi bi-bag"
           />
         </Col>
-      </Row>
+      </Row>*/}
       {/***Sales & Feed***/}
       <Row>
         {/*<Col sm="6" lg="6" xl="7" xxl="8">
@@ -118,10 +96,39 @@ function Starter(){
         <Col sm="6" lg="6" xl="5" xxl="7">
           <Feeds />
         </Col>
+        <Col>
+          <Col sm="6" lg="8">
+            <TopCards
+                bg="bg-light-danger text-danger"
+                title="Refunds"
+                subtitle="Date"
+                earning={date}
+                icon="bi bi-calendar"
+            />
+          </Col>
+          <Col sm="6" lg="8">
+            <TopCards
+                bg="bg-light-success text-success"
+                title="Profit"
+                subtitle="Time"
+                earning= {time}
+                icon="bi bi-clock"
+            />
+          </Col>
+          <Col sm="6" lg="8">
+            <TopCards
+                bg="bg-light-danger text-warning"
+                title="Refunds"
+                subtitle="Notifications"
+                earning= {dataLength}
+                icon="bi bi-bell"
+            />
+          </Col>
+        </Col>
       </Row>
       {/***Table ***/}
       <Row>
-        <Col lg="8">
+        <Col lg="9">
           <ProjectTables />
         </Col>
       </Row>
@@ -141,6 +148,6 @@ function Starter(){
       </Row>
     </div>
   );
-};
+}
 
 export default Starter;

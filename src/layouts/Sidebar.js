@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 
 const navigation = [
   {
-    title: "Dashboard",
+    title: "HomePage",
     href: "/starter",
     icon: "bi bi-speedometer2",
   },
@@ -56,7 +56,7 @@ const navigation = [
 ];
 
 const Sidebar = () => {
-  const showMobilemenu = () => {
+  const showMobileMenu = () => {
     document.getElementById("sidebarArea").classList.toggle("showSidebar");
   };
   let location = useLocation();
@@ -69,8 +69,8 @@ const Sidebar = () => {
           close
           size="sm"
           className="ms-auto d-lg-none"
-          onClick={() => showMobilemenu()}
-        ></Button>
+          onClick={() => showMobileMenu()}
+        />
       </div>
       <div className="pt-4 mt-2">
         <Nav vertical className="sidebarNav">
@@ -84,7 +84,7 @@ const Sidebar = () => {
                     : "nav-link text-secondary py-3"
                 }
               >
-                <i className={navi.icon}></i>
+                <i className={navi.icon}/>
                 <span className="ms-3 d-inline-block">{navi.title}</span>
               </Link>
             </NavItem>
