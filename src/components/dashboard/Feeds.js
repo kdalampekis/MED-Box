@@ -12,7 +12,7 @@ import {
 const FeedData = [
   {
     title: "Cras justo odio",
-    icon: "bi bi-bell",
+    icon: "bi bi-moon-stars",
     color: "primary",
     date: "6 minute ago",
   },

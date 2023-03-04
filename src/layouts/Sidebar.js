@@ -9,6 +9,11 @@ const navigation = [
     icon: "bi bi-speedometer2",
   },
   {
+    title: "PillForm",
+    href: "/pillForm",
+    icon: "bi bi-textarea-resize",
+  },
+  {
     title: "Alert",
     href: "/alerts",
     icon: "bi bi-bell",
