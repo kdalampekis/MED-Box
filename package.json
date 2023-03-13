@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@mui/base": "^5.0.0-alpha.119",
+    "@mui/lab": "^5.0.0-alpha.122",
+    "@syncfusion/ej2-react-calendars": "^20.4.52",
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -12,6 +14,7 @@
     "bootstrap-icons": "^1.7.0",
     "dayjs": "^1.11.7",
     "history": "^5.0.0",
+    "mdb-react-ui-kit": "^5.1.0",
     "node-sass": "^6.0.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",

@@ -1,6 +1,6 @@
 import { Col, Row } from "reactstrap";
 import Feeds from "../components/dashboard/Feeds";
-import ProjectTables from "../components/dashboard/ProjectTable";
+//import ProjectTables from "../components/dashboard/ProjectTable";
 import TopCards from "../components/dashboard/TopCards";
 import Blog from "../components/dashboard/Blog";
 import bg1 from "../assets/images/bg/bg1.jpg";
@@ -63,7 +63,7 @@ function Starter(){
     hour12: true,
   });
 
-  let dataLength = getLenght();
+  //let dataLength = getLenght();
 
   return (
     <div>
@@ -93,20 +93,7 @@ function Starter(){
         {/*<Col sm="6" lg="6" xl="7" xxl="8">
           <SalesChart />
         </Col>*/}
-        <Col sm="6" lg="6" xl="5" xxl="7">
-          <Feeds />
-        </Col>
-        <Col>
-          <Col sm="6" lg="8">
-            <TopCards
-                bg="bg-light-danger text-danger"
-                title="Refunds"
-                subtitle="Date"
-                earning={date}
-                icon="bi bi-calendar"
-            />
-          </Col>
-          <Col sm="6" lg="8">
+          <Col sm="6" lg="5">
             <TopCards
                 bg="bg-light-success text-success"
                 title="Profit"
@@ -115,23 +102,27 @@ function Starter(){
                 icon="bi bi-clock"
             />
           </Col>
-          <Col sm="6" lg="8">
-            <TopCards
-                bg="bg-light-danger text-warning"
-                title="Refunds"
-                subtitle="Notifications"
-                earning= {dataLength}
-                icon="bi bi-bell"
-            />
-          </Col>
+        <Col sm="6" lg="5">
+          <TopCards
+              bg="bg-light-danger text-danger"
+              title="Refunds"
+              subtitle="Date"
+              earning={date}
+              icon="bi bi-calendar"
+          />
         </Col>
       </Row>
       {/***Table ***/}
       <Row>
+        <Col sm="6" lg="6" xl="5" xxl="7">
+          <Feeds />
+        </Col>
+      </Row>
+      {/*<Row>
         <Col lg="9">
           <ProjectTables />
         </Col>
-      </Row>
+      </Row>*/}
       {/***Blog Cards***/}
       <Row>
         {BlogData.map((blg, index) => (

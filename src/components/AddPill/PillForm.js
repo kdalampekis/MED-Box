@@ -9,13 +9,31 @@ import {
     FormGroup,
     Label,
     Input,
-    FormText,
+    FormText, ListGroupItem, ListGroup,
 } from "reactstrap";
 import PopUp from "../PopUp";
-import {useState} from "react";
+import Time from '../Time';
+import React, {useState} from "react";
+const timeData = [
+    {
+        title: "Morning",
+        icon: "bi bi-brightness-high",
+        color: "warning",
+    },
+    {
+        title: "Noon",
+        icon: "bi bi-cloud-moon",
+        color: "info",
+    },
+    {
+        title: "Night",
+        icon: "bi bi-moon-stars",
+        color: "primary",
+    },
+];
 
 const PillForm = () => {
-    const [buttonPopUp, setButtonPopUp] = useState(false); //for popup use
+    //const [buttonPopUp, setButtonPopUp] = useState(false); //for popup use
     return (
         <Row>
             <Col>
@@ -49,14 +67,34 @@ const PillForm = () => {
                                 </Input>
                             </FormGroup>
                             <FormGroup>
-                                <div onClick={() => setButtonPopUp(true)}>
+                                {/*<div onClick={() => setButtonPopUp(true)}>
                                     <Button className="btn" outline color="primary">
                                         Set pill intake time
                                     </Button>
                                 </div>
                                 <PopUp trigger={buttonPopUp} setTrigger={setButtonPopUp}>
                                     <h3>My popup</h3>
-                                </PopUp>
+                                </PopUp>*/}
+                                <Time/>
+                                <Label for="pillDosage">Set Time Intake</Label>
+                                    {timeData.map((feed, index) => (
+                                        <ListGroupItem
+                                            key={index}
+                                            action
+                                            href="#"
+                                            className="d-flex align-items-center p-3 border-0"
+                                        >
+                                            <Button
+                                                className="rounded-circle me-3"
+                                                size="sm"
+                                                color={feed.color}
+                                            >
+                                                <i className={feed.icon}/>
+                                            </Button>
+                                            {feed.title}
+                                        </ListGroupItem>
+
+                                    ))}
                             </FormGroup>
                             <FormGroup>
                                 <Label for="exampleFile">File</Label>
