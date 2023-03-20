@@ -89,11 +89,16 @@ function Starter(){
         </Col>
       </Row>*/}
       {/***Sales & Feed***/}
+
+      {/***Table ***/}
       <Row>
-        {/*<Col sm="6" lg="6" xl="7" xxl="8">
+        <Col sm="6" lg="6" xl="5" xxl="7">
+          <Feeds />
+        </Col>
+          {/*<Col sm="6" lg="6" xl="7" xxl="8">
           <SalesChart />
         </Col>*/}
-          <Col sm="6" lg="5">
+        <Col sm="6" lg="5">
             <TopCards
                 bg="bg-light-success text-success"
                 title="Profit"
@@ -101,21 +106,13 @@ function Starter(){
                 earning= {time}
                 icon="bi bi-clock"
             />
-          </Col>
-        <Col sm="6" lg="5">
-          <TopCards
-              bg="bg-light-danger text-danger"
-              title="Refunds"
-              subtitle="Date"
-              earning={date}
-              icon="bi bi-calendar"
-          />
-        </Col>
-      </Row>
-      {/***Table ***/}
-      <Row>
-        <Col sm="6" lg="6" xl="5" xxl="7">
-          <Feeds />
+            <TopCards
+                bg="bg-light-danger text-danger"
+                title="Refunds"
+                subtitle="Date"
+                earning={date}
+                icon="bi bi-calendar"
+            />
         </Col>
       </Row>
       {/*<Row>

@@ -32,7 +32,7 @@ const ThemeRoutes = [
       { path: "/starter", exact: true, element: <Starter /> },
       { path: "/pillForm", exact: true, element: <PillForm /> },
       { path: "/profileCard", exact: true, element: <ProfileCard />},
-      { path: "/profile/:id", exact: true, element: <Profile />},
+      { path: "/profile/:id", element: <Profile />},
       { path: "/about", exact: true, element: <About /> },
       { path: "/alerts", exact: true, element: <Alerts /> },
       { path: "/badges", exact: true, element: <Badges /> },

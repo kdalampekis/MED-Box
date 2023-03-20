@@ -16,11 +16,14 @@ import {
     MDBListGroup,
     MDBListGroupItem
 } from 'mdb-react-ui-kit';
+import {useParams} from "react-router";
 
 
-export default function Profile(props) {
-    const { id } = props.location.state;
+export default function Profile() {
+    //const id = useLocation().state.id;
+    const { id } = useParams();
     console.log(id);
+
     return (
         <section style={{ backgroundColor: '#eee' }}>
             <MDBContainer className="py-5">

@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import {getUsers} from "./fakeProfiles";
 import { useState } from 'react';
 
+
+
+
 export default function ProfileCard() {
     const [users] = useState(getUsers());
     return (
@@ -26,8 +29,6 @@ export default function ProfileCard() {
                                     </div>
                                     <div className="flex-grow-1 ms-3">
                                         <MDBCardTitle>{user.name}</MDBCardTitle>
-
-
                                         <div className="d-flex justify-content-start rounded-3 p-2 mb-2"
                                              style={{ backgroundColor: '#efefef' }}>
                                             <div>
@@ -44,7 +45,7 @@ export default function ProfileCard() {
                                             </div>
                                         </div>
                                         <div className="d-flex pt-2">
-                                                <Link to={{pathname: './profile', state: user.id}} style={{ textDecoration: 'none' }}>
+                                                <Link to={{pathname: `/profile/${user.id}`}} style={{ textDecoration: 'none' }}>
                                                     <Button className="btn" outline color="info">
                                                     info
                                                     </Button>
