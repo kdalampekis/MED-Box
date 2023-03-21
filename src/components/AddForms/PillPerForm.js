@@ -14,6 +14,9 @@ import {
 import PopUp from "../PopUp";
 import Time from '../Time';
 import React, {useState} from "react";
+import {getUserName} from "../profile/fakeProfiles";
+import {useParams} from "react-router";
+
 const timeData = [
     {
         title: "Morning",
@@ -32,8 +35,10 @@ const timeData = [
     },
 ];
 
-const PillForm = () => {
+const PillPerForm = () => {
     //const [buttonPopUp, setButtonPopUp] = useState(false); //for popup use
+    const { id } = useParams();
+    console.log(id);
     return (
         <Row>
             <Col>
@@ -43,7 +48,7 @@ const PillForm = () => {
                 <Card>
                     <CardTitle tag="h6" className="border-bottom p-3 mb-0">
                         <i className="bi bi-bell me-2"> </i>
-                        Add a new Pill
+                        Add a new Pill for {getUserName(id)}
                     </CardTitle>
                     <CardBody>
                         <Form>
@@ -77,24 +82,24 @@ const PillForm = () => {
                                 </PopUp>*/}
                                 <Time/>
                                 <Label for="pillDosage">Set Time Intake</Label>
-                                    {timeData.map((feed, index) => (
-                                        <ListGroupItem
-                                            key={index}
-                                            action
-                                            href="#"
-                                            className="d-flex align-items-center p-3 border-0"
+                                {timeData.map((feed, index) => (
+                                    <ListGroupItem
+                                        key={index}
+                                        action
+                                        href="#"
+                                        className="d-flex align-items-center p-3 border-0"
+                                    >
+                                        <Button
+                                            className="rounded-circle me-3"
+                                            size="sm"
+                                            color={feed.color}
                                         >
-                                            <Button
-                                                className="rounded-circle me-3"
-                                                size="sm"
-                                                color={feed.color}
-                                            >
-                                                <i className={feed.icon}/>
-                                            </Button>
-                                            {feed.title}
-                                        </ListGroupItem>
+                                            <i className={feed.icon}/>
+                                        </Button>
+                                        {feed.title}
+                                    </ListGroupItem>
 
-                                    ))}
+                                ))}
                             </FormGroup>
                             <FormGroup>
                                 <Label for="exampleFile">File</Label>
@@ -115,4 +120,4 @@ const PillForm = () => {
     );
 };
 
-export default PillForm;
+export default PillPerForm;

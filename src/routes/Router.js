@@ -16,9 +16,12 @@ const Grid = lazy(() => import("../views/ui/Grid"));
 const Tables = lazy(() => import("../views/ui/Tables"));
 const Forms = lazy(() => import("../views/ui/Forms"));
 const Breadcrumbs = lazy(() => import("../views/ui/Breadcrumbs"));
-const PillForm = lazy(() => import("../components/AddPill/PillForm"));
+const PillForm = lazy(() => import("../components/AddForms/PillForm"));
 const ProfileCard = lazy(() => import("../components/profile/ProfileCard"));
+const PillPerForm = lazy(() => import("../components/AddForms/PillPerForm"));
 const Profile = lazy(() => import("../components/profile/Profile"));
+const UserForm = lazy(() => import("../components/AddForms/UserForm"));
+
 
 
 /*****Routes******/
@@ -31,6 +34,8 @@ const ThemeRoutes = [
       { path: "/", element: <Navigate to="/starter" /> },
       { path: "/starter", exact: true, element: <Starter /> },
       { path: "/pillForm", exact: true, element: <PillForm /> },
+      { path: "/userForm", exact: true, element: <UserForm /> },
+      { path: "/pillPerForm/:id", element: <PillPerForm /> },
       { path: "/profileCard", exact: true, element: <ProfileCard />},
       { path: "/profile/:id", element: <Profile />},
       { path: "/about", exact: true, element: <About /> },
