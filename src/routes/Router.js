@@ -23,7 +23,6 @@ const Profile = lazy(() => import("../components/profile/Profile"));
 const UserForm = lazy(() => import("../components/AddForms/UserForm"));
 
 
-
 /*****Routes******/
 
 const ThemeRoutes = [

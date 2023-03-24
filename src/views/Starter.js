@@ -1,14 +1,17 @@
 import { Col, Row } from "reactstrap";
-import Feeds from "../components/dashboard/Feeds";
-//import ProjectTables from "../components/dashboard/ProjectTable";
 import TopCards from "../components/dashboard/TopCards";
-import Blog from "../components/dashboard/Blog";
 import bg1 from "../assets/images/bg/bg1.jpg";
 import bg2 from "../assets/images/bg/bg2.jpg";
 import bg3 from "../assets/images/bg/bg3.jpg";
 import bg4 from "../assets/images/bg/bg4.jpg";
 import React, {useEffect, useState} from "react";
-import {getLenght} from "../components/dashboard/ProjectData";
+import ProfileCard from "../components/profile/ProfileCard";
+import {getUserName, getUsers} from "../components/profile/fakeProfiles";
+import Instructions from "../components/Instructions";
+import Pop from "../components/Pop"
+import Feeds from "../components/dashboard/Feeds";
+import Tables from "./ui/Tables";
+import ProjectTable from "../components/dashboard/ProjectTable";
 const BlogData = [
   {
     image: bg1,
@@ -43,7 +46,9 @@ const BlogData = [
   },
 ];
 
+
 function Starter(){
+
 
   const [dateState, setDateState] = useState(new Date());
   useEffect(() => {
@@ -62,6 +67,7 @@ function Starter(){
     minute: 'numeric',
     hour12: true,
   });
+
 
   //let dataLength = getLenght();
 
@@ -92,47 +98,49 @@ function Starter(){
 
       {/***Table ***/}
       <Row>
-        <Col sm="6" lg="6" xl="5" xxl="7">
-          <Feeds />
+        <Col sm="6" md="6" lg="4">
+          <TopCards
+              bg="bg-light-success text-success"
+              title="Profit"
+              subtitle="Time"
+              earning= {time}
+              icon="bi bi-clock"
+          />
         </Col>
-          {/*<Col sm="6" lg="6" xl="7" xxl="8">
-          <SalesChart />
-        </Col>*/}
-        <Col sm="6" lg="5">
+          <Col sm="6" md="6" lg="4">
+          <TopCards
+              bg="bg-light-danger text-danger"
+              title="Refunds"
+              subtitle="Date"
+              earning={date}
+              icon="bi bi-calendar"
+          />
+          </Col>
+            <Col sm="6" md="6" lg="4">
             <TopCards
-                bg="bg-light-success text-success"
-                title="Profit"
-                subtitle="Time"
-                earning= {time}
-                icon="bi bi-clock"
-            />
-            <TopCards
-                bg="bg-light-danger text-danger"
+                bg="bg-light-warning text-danger"
                 title="Refunds"
-                subtitle="Date"
-                earning={date}
-                icon="bi bi-calendar"
+                subtitle="Next Pill Intake"
+                earning={getUserName(1)}
+                icon = "bi bi-bell"
             />
         </Col>
       </Row>
-      {/*<Row>
-        <Col lg="9">
-          <ProjectTables />
-        </Col>
-      </Row>*/}
-      {/***Blog Cards***/}
+      <Pop/>
       <Row>
-        {BlogData.map((blg, index) => (
-          <Col sm="6" lg="6" xl="3" key={index}>
-            <Blog
-              image={blg.image}
-              title={blg.title}
-              subtitle={blg.subtitle}
-              text={blg.description}
-              color={blg.btnbg}
-            />
-          </Col>
-        ))}
+        <Col sm="10" md="6" lg="10" xl="10">
+          <ProfileCard/>
+        </Col>
+      </Row>
+      <Row>
+        <Col sm="12" md="6" lg="10" xl="10">
+          <ProjectTable/>
+        </Col>
+      </Row>
+      <Row>
+        <Col sm="10" lg="10" xl="10">
+          <Instructions/>
+        </Col>
       </Row>
     </div>
   );

@@ -1,8 +1,9 @@
+
 const users = [
     {
         id: 1,
         name: "John Smith",
-        email: "example@gmail.com",
+        email: "jsmith@gmail.com",
         phone: "6942423473",
         age: 35,
         gender: "male",
@@ -17,7 +18,7 @@ const users = [
     {
         id: 2,
         name: "Jane Doe",
-        email: "example@gmail.com",
+        email: "jdoe@gmail.com",
         phone: "6942423473",
         age: 42,
         gender: "female",
@@ -32,7 +33,7 @@ const users = [
     {
         id: 3,
         name: "David Johnson",
-        email: "example@gmail.com",
+        email: "djohnson@gmail.com",
         phone: "6942423473",
         age: 57,
         gender: "male",

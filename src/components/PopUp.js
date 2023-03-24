@@ -48,9 +48,9 @@ function PopUp(props){
                  <button type="button" className="btn-close" aria-label="Close" onClick={() => props.setTrigger(false)}/>
              </div>
 
-             {/*<button className="close-btn" onClick={() => props.setTrigger(false)}>
+           <button className="close-btn" onClick={() => props.setTrigger(false)}>
                  Done
-             </button>*/}
+             </button>
          </div>
      </div>
         ) : "";
