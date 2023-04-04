@@ -21,6 +21,7 @@ import {getUserName, getUserAge, getUserGender, getUserPills, getUserImg, getEma
 import {Badge, Button} from "reactstrap";
 import SalesChart from "../dashboard/SalesChart";
 import {Link} from "react-router-dom";
+import Calendar from "./Calendar";
 
 
 export default function Profile() {
@@ -51,12 +52,13 @@ export default function Profile() {
 
                         <MDBCard className="mb-4 mb-md-0">
                             <MDBCardBody>
-                                <MDBCardText className="mb-4"><span className="text-primary font-italic me-1"><h3>Prescription Pills</h3></span></MDBCardText>
+                                <MDBCardText className="mb-1"><span className="text-primary font-italic me-1"><h3>Prescription Pills</h3></span></MDBCardText>
+                                <MDBCardText className="mb-1"><span className="text-secondary font-italic me-1"><h5>Today's Order</h5></span></MDBCardText>
                                 {entries.map(([key, value]) => (
                                     <React.Fragment>
-                                        <MDBCardText className="mt-4 mb-1" style={{ fontSize: '.77rem'}}>
+                                        <MDBCardText className="mt-2 mb-2" style={{ fontSize: '.77rem'}}>
                                             <h5>{key}
-                                                <Badge color="secondary" style={{marginLeft: '8px'}}>{value}</Badge>
+                                                <Badge color="secondary" style={{marginLeft: '8px'}}>{value}/{sum}</Badge>
                                             </h5>
                                         </MDBCardText>
                                             <MDBProgress className="rounded" >
@@ -143,7 +145,6 @@ export default function Profile() {
                                 </MDBRow>
                             </MDBCardBody>
                         </MDBCard>
-
                         <MDBRow>
                             <SalesChart/>
                         </MDBRow>

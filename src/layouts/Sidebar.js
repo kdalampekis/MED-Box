@@ -24,8 +24,8 @@ const navigation = [
     icon: "bi bi-textarea-resize",
   },
   {
-    title: "Test",
-    href: "/test",
+    title: "Take a Pill",
+    href: "/pillCard",
     icon: "bi bi-textarea-resize",
   },
   {

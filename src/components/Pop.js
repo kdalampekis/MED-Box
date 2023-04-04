@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
+import {Button} from 'reactstrap';
 import Modal from 'react-bootstrap/Modal';
 
 function Pop() {
@@ -10,21 +10,21 @@ function Pop() {
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
-                Launch demo modal
+            <Button className="btn" outline color="info" onClick={handleShow}>
+                Give me
             </Button>
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
+                    <Modal.Title>Are you sure?</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                <Modal.Body>Click Ok to <strong>continue</strong> or Cancel to <strong>return</strong></Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
+                    <Button className="btn" outline color="success" onClick={handleClose}>
+                        OK
                     </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        Save Changes
+                    <Button className="btn" outline color="danger" onClick={handleClose}>
+                        Close
                     </Button>
                 </Modal.Footer>
             </Modal>

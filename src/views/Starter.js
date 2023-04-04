@@ -1,4 +1,4 @@
-import { Col, Row } from "reactstrap";
+import {Button, Col, Row} from "reactstrap";
 import TopCards from "../components/dashboard/TopCards";
 import bg1 from "../assets/images/bg/bg1.jpg";
 import bg2 from "../assets/images/bg/bg2.jpg";
@@ -12,6 +12,7 @@ import Pop from "../components/Pop"
 import Feeds from "../components/dashboard/Feeds";
 import Tables from "./ui/Tables";
 import ProjectTable from "../components/dashboard/ProjectTable";
+import {Link} from "react-router-dom";
 const BlogData = [
   {
     image: bg1,
@@ -126,11 +127,18 @@ function Starter(){
             />
         </Col>
       </Row>
-      <Pop/>
+      <Row/>
       <Row>
         <Col sm="10" md="6" lg="10" xl="10">
           <ProfileCard/>
         </Col>
+      </Row>
+      <Row>
+        <Link to={{pathname: '/pillCard'}} style={{ textDecoration: 'none' }}>
+          <Button className="btn" color="info" size="lg" block>
+            Give me a Pill!
+          </Button>
+        </Link>
       </Row>
       <Row>
         <Col sm="12" md="6" lg="10" xl="10">
