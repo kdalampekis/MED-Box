@@ -8,11 +8,10 @@ import React, {useEffect, useState} from "react";
 import ProfileCard from "../components/profile/ProfileCard";
 import {getUserName, getUsers} from "../components/profile/fakeProfiles";
 import Instructions from "../components/Instructions";
-import Pop from "../components/Pop"
-import Feeds from "../components/dashboard/Feeds";
-import Tables from "./ui/Tables";
 import ProjectTable from "../components/dashboard/ProjectTable";
 import {Link} from "react-router-dom";
+import axios from "axios";
+import async from "async";
 const BlogData = [
   {
     image: bg1,
@@ -50,6 +49,18 @@ const BlogData = [
 
 function Starter(){
 
+  const [next_user, set_next_user] = useState([])
+
+  useEffect(() => {
+    axios.get('http://192.168.1.100:8000/medb/get_next_user/')
+        .then(response => {
+          set_next_user(response.data);
+
+        })
+        .catch(error => {
+          console.log(error);
+        });
+  }, []);
 
   const [dateState, setDateState] = useState(new Date());
   useEffect(() => {
@@ -122,26 +133,28 @@ function Starter(){
                 bg="bg-light-warning text-danger"
                 title="Refunds"
                 subtitle="Next Pill Intake"
-                earning={getUserName(1)}
+                earning={next_user.full_name}
                 icon = "bi bi-bell"
             />
         </Col>
       </Row>
       <Row/>
       <Row>
-        <Col sm="10" md="6" lg="10" xl="10">
+        <Col sm="10" md="10" lg="10" xl="10">
           <ProfileCard/>
         </Col>
       </Row>
       <Row>
-        <Link to={{pathname: '/pillCard'}} style={{ textDecoration: 'none' }}>
-          <Button className="btn" color="info" size="lg" block>
-            Give me a Pill!
-          </Button>
-        </Link>
+        <Col xs="10" sm="10" md="10" lg="10" xl="10">
+          <Link to={{pathname: '/pillCard'}} style={{ textDecoration: 'none' }}>
+            <Button className="btn" color="info" size="lg" block>
+              Give me a Pill!
+            </Button>
+          </Link>
+        </Col>
       </Row>
-      <Row>
-        <Col sm="12" md="6" lg="10" xl="10">
+      <Row >
+        <Col xs="10" sm="10" md="10" lg="10" xl="10">
           <ProjectTable/>
         </Col>
       </Row>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Col, Row} from "reactstrap";
 import { Link } from 'react-router-dom';
 import {getPills} from "./fakePills";
@@ -7,19 +7,31 @@ import {Button} from 'reactstrap';
 import Card from 'react-bootstrap/Card';
 import './pillCard.css';
 import Pop from "../Pop"
-
-
+import axios from "axios";
 
 
 export default function PillCard() {
-    const [pills] = useState(getPills());
+
+    const [pills, setPills] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://192.168.1.100:8000/medb/get_pills/')
+            .then(response => {
+                setPills(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }, []);
+
+
     return (
         <Row>
             {pills.map(pill => (
                 <Col sm="10" md ="10" lg="10" xl="6" key={pill.id} style={{ borderRadius: '15px'}}>
                     <div className='pillCard'>
                         <Card style={{ width: '18rem' }}>
-                            <Card.Img variant="top" src={pill.img} />
+                            <Card.Img variant="top" src={pill.imageSrc} />
                             <Card.Body className="p-3">
                                 <Card.Title>{pill.name}</Card.Title>
                                 <Card.Text>

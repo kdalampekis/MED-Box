@@ -11,8 +11,8 @@ import {
     Input,
     FormText, ListGroupItem, ListGroup,
 } from "reactstrap";
-import PopUp from "../PopUp";
-import Time from '../Time';
+
+import Timer from "./TimePicker";
 import React, {useState} from "react";
 import {getUserName} from "../profile/fakeProfiles";
 import {useParams} from "react-router";
@@ -80,7 +80,6 @@ const PillPerForm = () => {
                                 <PopUp trigger={buttonPopUp} setTrigger={setButtonPopUp}>
                                     <h3>My popup</h3>
                                 </PopUp>*/}
-                                <Time/>
                                 <Label for="pillDosage">Set Time Intake</Label>
                                 {timeData.map((feed, index) => (
                                     <ListGroupItem
@@ -100,6 +99,9 @@ const PillPerForm = () => {
                                     </ListGroupItem>
 
                                 ))}
+                            </FormGroup>
+                            <FormGroup>
+                                <Timer/>
                             </FormGroup>
                             <FormGroup>
                                 <Label for="exampleFile">File</Label>

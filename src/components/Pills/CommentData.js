@@ -1,13 +1,8 @@
-import user1 from "../../assets/images/users/user1.jpg";
-import user2 from "../../assets/images/users/user2.jpg";
-import user3 from "../../assets/images/users/user3.jpg";
-
-
 const commentsData = [
     {
         id: 1,
         user_id: 1,
-        avatar: user1,
+        avatar: "./users/user1.jpg",
         name: "John Smith",
         email: "jsmith@gmail.com",
         commentText: "This pill is wonderful",
@@ -15,7 +10,7 @@ const commentsData = [
     },
     {   id: 2,
         user_id: 2,
-        avatar: user2,
+        avatar: "./users/user2.jpg",
         name: "Jane Doe",
         email: "jdoe@gmail.com",
         commentText: "This pill is awful",
@@ -24,7 +19,7 @@ const commentsData = [
     },
     {   id: 3,
         user_id: 3,
-        avatar: user3,
+        avatar: "./users/user3.jpg",
         name: "David Johnson",
         email: "djohnson@gmail.com",
         commentText: "This pill is ok",

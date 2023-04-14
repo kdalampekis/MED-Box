@@ -14,7 +14,6 @@ import {
   Button,
 } from "reactstrap";
 import { ReactComponent as LogoWhite } from "../assets/images/logos/xtremelogowhite.svg";
-import user1 from "../assets/images/users/user1.jpg";
 
 const Header = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -80,7 +79,7 @@ const Header = () => {
         <Dropdown isOpen={dropdownOpen} toggle={toggle}>
           <DropdownToggle color="primary">
             <img
-            src={user1}
+            src={"./users/user1.jpg"}
             alt="profile"
             className="rounded-circle"
             width="30"

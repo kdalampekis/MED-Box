@@ -21,7 +21,6 @@ import {getUserName, getUserAge, getUserGender, getUserPills, getUserImg, getEma
 import {Badge, Button} from "reactstrap";
 import SalesChart from "../dashboard/SalesChart";
 import {Link} from "react-router-dom";
-import Calendar from "./Calendar";
 
 
 export default function Profile() {

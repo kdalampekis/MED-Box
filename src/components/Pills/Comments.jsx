@@ -1,25 +1,38 @@
 import {Card, CardBody, CardTitle, Table} from "reactstrap";
-import {getComments} from "./CommentData";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
+import {useParams} from "react-router";
+import axios from "axios";
 
-
-const comments = getComments();
 
 const Comments = () => {
+    const { id } = useParams();
+    const [comments, setComments] = useState([]);
+
+
+    useEffect(() => {
+        axios.get(`http://192.168.1.100:8000/medb/get_comments/${1}/`)
+            .then(response => {
+                setComments(response.data);
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }, []);
     return (
         <Card>
             <CardBody>
                 <CardTitle tag="h2">Comments about this pill</CardTitle>
                 <Table className="no-wrap mt-4 align-middle" responsive borderless>
                     <tbody>
-                        {comments.map((comment) => (
+                        {comments.map(comment => (
                             <tr key={comment.id}>
                                 <td>
                                     <div className="d-flex align-items-center p-2">
-                                        <Link to={{pathname: `/profile/${comment.user_id}`}} style={{ textDecoration: 'none' }}>
+                                        <Link to={{pathname: `/profile/${comment.user.id}`}} style={{ textDecoration: 'none' }}>
                                             <img
-                                                src={comment.avatar}
+                                                src={comment.user.imgSrc}
                                                 className="rounded-circle"
                                                 alt="avatar"
                                                 width="45"
@@ -27,15 +40,15 @@ const Comments = () => {
                                             />
                                         </Link>
                                         <div className="ms-5">
-                                            <h6 className="mb-0" style={{color:"black"}}>{comment.name}</h6>
-                                            <span className="text-muted">{comment.email}</span>
+                                            <h6 className="mb-0" style={{color:"black"}}>{comment.user.full_name}</h6>
+                                            <span className="text-muted">{comment.user.email}</span>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
                                     <h6>{comment.commentText}</h6>
                                 </td>
-                                <td style={{color:"black"}}>{comment.date}</td>
+                                <td style={{color:"black"}}>6 minutes ago</td>
                             </tr>
                     ))}
                         </tbody>

@@ -1,11 +1,9 @@
 import {Card, CardBody, CardTitle, CardSubtitle, Table, Badge, Alert} from "reactstrap";
 import {getTableData} from "./ProjectData";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
-
-
-const tableData = getTableData();
+import axios from "axios";
 
 function getColor(pills_missed){
   if(pills_missed >= 1 && pills_missed <=2){
@@ -18,6 +16,18 @@ function getColor(pills_missed){
 }
 
 const ProjectTables = () => {
+  const [users, setusers] = useState([])
+
+  useEffect(() => {
+    axios.get('http://192.168.1.100:8000/medb/count_taken/')
+        .then(response => {
+          setusers(response.data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+  }, []);
+
   return (
       <Card>
         <CardBody>
@@ -29,13 +39,13 @@ const ProjectTables = () => {
               </tr>
             </thead>
             <tbody>
-              {tableData.map((data, index) => (
-                  <Alert color= {getColor(data.status)}>
+              {users.map((data, index) => (
+                  <Alert color= {getColor(data.missed)}>
                       <td>
                         <div className="d-flex align-items-center p-2">
                           <Link to={{pathname: `/profile/${data.id}`}} style={{ textDecoration: 'none' }}>
                             <img
-                              src={data.avatar}
+                              src={data.imgSrc}
                               className="rounded-circle"
                               alt="avatar"
                               width="45"
@@ -52,7 +62,7 @@ const ProjectTables = () => {
                       <td>
                           <h5 className="mb-0" style={{color:"black"}}>Pills Missed
                             <Badge color="dark" className="ms-3">
-                              {data.status}
+                              {data.missed}
                             </Badge>
                           </h5>
                       </td>

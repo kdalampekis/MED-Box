@@ -4,7 +4,7 @@ const users = [
         id: 1,
         name: "John Smith",
         email: "jsmith@gmail.com",
-        phone: "6942423473",
+        phone: "6982590371",
         age: 35,
         gender: "male",
         address: "Magnisias 36 Nikaia",
@@ -13,13 +13,13 @@ const users = [
             "Metoprolol": 4,
             "Lipitor": 5
         },
-        img: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+        img: "./users/user1.jpg"
     },
     {
         id: 2,
         name: "Jane Doe",
         email: "jdoe@gmail.com",
-        phone: "6942423473",
+        phone: "6989871356",
         age: 42,
         gender: "female",
         address: "Magnisias 36 Nikaia",
@@ -28,13 +28,13 @@ const users = [
             "Lorazepam": 4,
             "Levothyroxine": 5
         },
-        img: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+        img: "./users/user2.jpg"
     },
     {
         id: 3,
         name: "David Johnson",
         email: "djohnson@gmail.com",
-        phone: "6942423473",
+        phone: "6943433677",
         age: 57,
         gender: "male",
         address: "Magnisias 36 Nikaia",
@@ -43,7 +43,7 @@ const users = [
             "Simvastatin": 4,
             "Aspirin": 5
         },
-        img: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+        img: "./users/user3.jpg"
     }
 ];
 

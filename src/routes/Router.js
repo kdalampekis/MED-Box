@@ -23,6 +23,8 @@ const Profile = lazy(() => import("../components/profile/Profile"));
 const UserForm = lazy(() => import("../components/AddForms/UserForm"));
 const PillCard = lazy(() => import("../components/Pills/PilCard"));
 const Pill = lazy(() => import("../components/Pills/Pill"));
+const Time = lazy(() => import("../components/AddForms/TimePicker"));
+
 
 
 /*****Routes******/
@@ -41,6 +43,7 @@ const ThemeRoutes = [
       { path: "/pillCard", exact: true, element: <PillCard />},
       { path: "/profile/:id", element: <Profile />},
       { path: "/pill/:id", element: <Pill />},
+      { path: "/time", exact: true, element: <Time /> },
       { path: "/about", exact: true, element: <About /> },
       { path: "/alerts", exact: true, element: <Alerts /> },
       { path: "/badges", exact: true, element: <Badges /> },

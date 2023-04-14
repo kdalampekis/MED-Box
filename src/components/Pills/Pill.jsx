@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     MDBCol,
     MDBContainer,
@@ -9,14 +9,24 @@ import {
     MDBCardImage,
 } from 'mdb-react-ui-kit';
 import {useParams} from "react-router";
-import {getName, getW, getDesc, getCompany, getInv, getImg, getWarning} from "./fakePills";
 import Comments from "./Comments";
 import {Alert, Button, Form, FormGroup, Input, Label} from "reactstrap";
+import axios from "axios";
 
 
 export default function Pill() {
     const { id } = useParams();
-    console.log(id);
+    const [pill, setPill] = useState([]);
+
+    useEffect(() => {
+        axios.get(`http://192.168.1.100:8000/medb/get_pill/${id}/`)
+            .then(response => {
+                setPill(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }, []);
 
     return (
         <section style={{ backgroundColor: '#eee' }}>
@@ -26,7 +36,7 @@ export default function Pill() {
                         <MDBCard className="mb-4">
                             <MDBCardBody className="text-center">
                                 <MDBCardImage
-                                    src= {getImg(id)}
+                                    src= {pill.imageSrc}
                                     alt="avatar"
                                     className="rounded-circle"
                                     style={{ width: '150px' }}
@@ -40,16 +50,16 @@ export default function Pill() {
                                         <MDBCardText>Name</MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="9">
-                                        <MDBCardText className="text-muted">{getName(id)}</MDBCardText>
+                                        <MDBCardText className="text-muted">{pill.name}</MDBCardText>
                                     </MDBCol>
                                 </MDBRow>
                                 <hr />
                                 <MDBRow>
-                                    <MDBCol sm="3">
+                                    <MDBCol sm="9">
                                         <MDBCardText>Description</MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="9">
-                                        <MDBCardText className="text-muted">{getDesc(id)}</MDBCardText>
+                                        <MDBCardText className="text-muted">{pill.description}</MDBCardText>
                                     </MDBCol>
                                 </MDBRow>
                                 <hr />
@@ -58,7 +68,7 @@ export default function Pill() {
                                         <MDBCardText>Weight</MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="9">
-                                        <MDBCardText className="text-muted">{getW(id)}</MDBCardText>
+                                        <MDBCardText className="text-muted">{pill.weight}</MDBCardText>
                                     </MDBCol>
                                 </MDBRow>
                                 <hr />
@@ -67,7 +77,7 @@ export default function Pill() {
                                         <MDBCardText>Company</MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="9">
-                                        <MDBCardText className="text-muted">{getCompany(id)}</MDBCardText>
+                                        <MDBCardText className="text-muted">{pill.company}</MDBCardText>
                                     </MDBCol>
                                 </MDBRow>
                                 <hr />
@@ -76,7 +86,7 @@ export default function Pill() {
                                         <MDBCardText>Remaining</MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="9">
-                                        <MDBCardText className="text-muted">{getInv(id)}</MDBCardText>
+                                        <MDBCardText className="text-muted">{pill.inventory}</MDBCardText>
                                     </MDBCol>
                                 </MDBRow>
                                 <hr />
@@ -84,8 +94,8 @@ export default function Pill() {
                         </MDBCard>
                     </MDBCol>
                     <MDBCol lg="7">
-                        <Alert color="danger">{getWarning(id)}</Alert>
-                        <Comments/>
+                        <Alert color="danger">{pill.warning}</Alert>
+                        <Comments id={pill.id}/>
                         <Form>
                             <FormGroup>
                                 <Label for="exampleText">Leave a Comment about this pill</Label>

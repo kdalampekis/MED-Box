@@ -34,6 +34,11 @@ const navigation = [
     icon: "bi bi-bell",
   },
   {
+    title: "Time",
+    href: "/time",
+    icon: "bi bi-patch-check",
+  },
+  {
     title: "Badges",
     href: "/badges",
     icon: "bi bi-patch-check",
