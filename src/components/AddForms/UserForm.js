@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 import {
     Card,
     Row,
@@ -10,52 +10,82 @@ import {
     FormGroup,
     Label,
     Input,
-    FormText, ListGroupItem
-} from "reactstrap";
+} from 'reactstrap';
+import { DatePicker } from 'reactstrap-date-picker';
+import { API_URL } from '../../api';
+import axios from 'axios';
 
 const UserForm = () => {
+    const [value, setValue] = useState(new Date());
+    const [formattedValue, setFormattedValue] = useState('');
+
+    const handleChange = (v, f) => {
+        setValue(v);
+        setFormattedValue(f);
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        // Format date
+        const formattedDate = value.toISOString().split('T')[0];
+
+        // Get the form data
+        const formData = new FormData();
+        formData.append('first_name', event.target.elements.first_name.value);
+        formData.append('last_name', event.target.elements.last_name.value);
+        formData.append('email', event.target.elements.email.value);
+        formData.append('phone', event.target.elements.phone.value);
+        formData.append('birth_date', formattedDate);
+        formData.append('gender', event.target.elements.gender.value);
+        formData.append('description', event.target.elements.description.value);
+
+        // Send a POST request to the backend API endpoint
+        axios
+            .post(API_URL + 'create_user/', formData)
+            .then((response) => {
+                // Handle the response
+                console.log(response.data);
+            })
+            .catch((error) => {
+                // Handle the error
+                console.log(error);
+            });
+    };
+
     return (
         <Row>
             <Col>
-                {/* --------------------------------------------------------------------------------*/}
-                {/* Card-1*/}
-                {/* --------------------------------------------------------------------------------*/}
                 <Card>
                     <CardTitle tag="h6" className="border-bottom p-3 mb-0">
                         <i className="bi bi-bell me-2"> </i>
                         Add a new Pill
                     </CardTitle>
                     <CardBody>
-                        <Form>
+                        <Form onSubmit={handleSubmit}>
                             <FormGroup>
                                 <Label for="firstName">First Name</Label>
-                                <Input
-                                    id="firstName"
-                                    name="firstName"
-                                    placeholder="eg John"
-                                    type="text"
-                                />
+                                <Input id="firstName" name="first_name" placeholder="eg John" type="text" />
                             </FormGroup>
                             <FormGroup>
                                 <Label for="lastName">Last Name</Label>
-                                <Input
-                                    id="lastName"
-                                    name="lastName"
-                                    placeholder="eg Doe"
-                                    type="text"
-                                />
+                                <Input id="lastName" name="last_name" placeholder="eg Doe" type="text" />
                             </FormGroup>
                             <FormGroup>
-                                <Label for="age">Age</Label>
-                                <Input
-                                    id="age"
-                                    name="age"
-                                    placeholder="eg 20"
-                                    type="number"
-                                />
+                                <Label for="email">Email</Label>
+                                <Input type="email" name="email" id="email" placeholder="example@gmail.com" />
                             </FormGroup>
                             <FormGroup>
-                                <Label for="gender">Select # of Pills</Label>
+                                <Label for="phone">Phone Number</Label>
+                                <Input id="phone" name="phone" placeholder="69xxxxxxxx" type="number" />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label>Date of Birth</Label>
+                                <DatePicker value={value} onChange={(v, f) => handleChange(v, f)} />
+                                <input type="hidden" name="birth_date" value={formattedValue} />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="gender">Gender</Label>
                                 <Input id="gender" name="gender" type="select">
                                     <option>Male</option>
                                     <option>Female</option>
@@ -63,22 +93,16 @@ const UserForm = () => {
                                 </Input>
                             </FormGroup>
                             <FormGroup>
-                                <Label for="exampleText">Comments on the patient</Label>
-                                <Input id="exampleText" name="text" type="textarea" />
+                                <Label for="description">Comments on the patient</Label>
+                                <Input id="description" name="description" type="textarea" />
                             </FormGroup>
-                            <FormGroup>
-                                <Label for="exampleFile">File</Label>
-                                <Input id="exampleFile" name="file" type="file" />
-                                <FormText>
-                                    You can upload the medical exams associated with the pills you take
-                                </FormText>
-                            </FormGroup>
-                            <Button>Submit</Button>
+                            <Button type="submit">Submit</Button>
                         </Form>
                     </CardBody>
                 </Card>
             </Col>
         </Row>
+
     );
 };
 

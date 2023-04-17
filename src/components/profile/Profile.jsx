@@ -23,6 +23,7 @@ import SalesChart from "../dashboard/SalesChart";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import { API_URL } from '../../api';
+import Calendar from "./Calendar";
 
 
 
@@ -154,9 +155,15 @@ export default function Profile() {
                                 </MDBRow>
                             </MDBCardBody>
                         </MDBCard>
-                        <MDBRow>
-                            <SalesChart/>
-                        </MDBRow>
+                        <MDBCol lg="12" md="12" sm="12">
+                            <MDBCard className="mb-4">
+                                <MDBCardBody>
+                                    <MDBRow>
+                                        <Calendar/>
+                                    </MDBRow>
+                                </MDBCardBody>
+                            </MDBCard>
+                        </MDBCol>
                     </MDBCol>
                 </MDBRow>
             </MDBContainer>
