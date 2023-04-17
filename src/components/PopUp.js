@@ -5,14 +5,17 @@ import axios from 'axios';
 import { API_URL } from '../api';
 
 
-function Pop() {
+function PopUp() {
     const [show, setShow] = useState(false);
     const [user, setUser] = useState(null);
+    const [alarmId, setAlarmId] = useState(null);
 
     useEffect(() => {
         const fetchNextUser = async () => {
             const response = await axios.get(API_URL+ 'get_next_user/');
             setUser(response.data);
+            setAlarmId(response.data.alarm_id);
+            console.log(response.data.alarm_id);
         };
 
         fetchNextUser();
@@ -35,10 +38,22 @@ function Pop() {
 
     const handleClose = () => {
         setShow(false);
+        sendTakenData(false);
     };
 
     const handleOk = () => {
         setShow(false);
+        sendTakenData(true);
+    };
+
+    const sendTakenData = (taken) => {
+        axios.post(API_URL + `take_medication/${alarmId}/`, {taken: taken})
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
     };
 
     return (
@@ -63,4 +78,4 @@ function Pop() {
     );
 }
 
-export default Pop;
+export default PopUp;

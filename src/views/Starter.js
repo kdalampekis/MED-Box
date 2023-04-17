@@ -11,7 +11,6 @@ import ProjectTable from "../components/dashboard/ProjectTable";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import { API_URL } from '../api';
-import Popup from "../components/PopUp";
 const BlogData = [
   {
     image: bg1,
@@ -139,7 +138,6 @@ function Starter(){
         </Col>
       </Row>
       <Row/>
-      <Popup/>
       <Row>
         <Col sm="10" md="10" lg="10" xl="10">
           <ProfileCard/>
