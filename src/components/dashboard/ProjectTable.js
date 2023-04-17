@@ -4,6 +4,8 @@ import React, {useEffect, useState} from "react";
 import {Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import axios from "axios";
+import { API_URL } from '../../api';
+
 
 function getColor(pills_missed){
   if(pills_missed >= 1 && pills_missed <=2){
@@ -19,7 +21,7 @@ const ProjectTables = () => {
   const [users, setusers] = useState([])
 
   useEffect(() => {
-    axios.get('http://192.168.1.100:8000/medb/count_taken/')
+    axios.get(API_URL+'count_taken/')
         .then(response => {
           setusers(response.data);
         })

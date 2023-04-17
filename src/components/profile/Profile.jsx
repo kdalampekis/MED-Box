@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     MDBCol,
     MDBContainer,
@@ -21,16 +21,26 @@ import {getUserName, getUserAge, getUserGender, getUserPills, getUserImg, getEma
 import {Badge, Button} from "reactstrap";
 import SalesChart from "../dashboard/SalesChart";
 import {Link} from "react-router-dom";
+import axios from "axios";
+import { API_URL } from '../../api';
+
 
 
 export default function Profile() {
     //const id = useLocation().state.id;
     const { id } = useParams();
-    console.log(id);
-    const dictionary = getUserPills(id);
-    const entries = Object.entries(dictionary);
-    const sum = getPillSum(id);
-    console.log(sum);
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        axios.get(API_URL+`get_user/${id}/`)
+            .then(response => {
+                setUser(response.data);
+                console.log(response.data)
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }, []);
 
 
     return (
@@ -41,7 +51,7 @@ export default function Profile() {
                         <MDBCard className="mb-4">
                             <MDBCardBody className="text-center">
                                 <MDBCardImage
-                                    src= {getUserImg(id)}
+                                    src= {user.imgSrc}
                                     alt="avatar"
                                     className="rounded-circle"
                                     style={{ width: '150px' }}
@@ -53,18 +63,18 @@ export default function Profile() {
                             <MDBCardBody>
                                 <MDBCardText className="mb-1"><span className="text-primary font-italic me-1"><h3>Prescription Pills</h3></span></MDBCardText>
                                 <MDBCardText className="mb-1"><span className="text-secondary font-italic me-1"><h5>Today's Order</h5></span></MDBCardText>
-                                {entries.map(([key, value]) => (
-                                    <React.Fragment>
+                                {user.prescription_pills && user.prescription_pills.map(pill => (
+                                    <React.Fragment key={pill.id}>
                                         <MDBCardText className="mt-2 mb-2" style={{ fontSize: '.77rem'}}>
-                                            <h5>{key}
-                                                <Badge color="secondary" style={{marginLeft: '8px'}}>{value}/{sum}</Badge>
+                                            <h5>{pill.name}
+                                                <Badge color="secondary" style={{marginLeft: '8px'}}>{0}/{3}</Badge>
                                             </h5>
                                         </MDBCardText>
-                                            <MDBProgress className="rounded" >
-                                                <MDBProgressBar width={(value/sum)*100} valuemin={0} valuemax={100} />
-                                            </MDBProgress>
+                                        <MDBProgress className="rounded" >
+                                            <MDBProgressBar width={30} valuemin={0} valuemax={100} />
+                                        </MDBProgress>
                                     </React.Fragment>
-                                    ))}
+                                ))}
                             </MDBCardBody>
 
                             <MDBCardBody>
@@ -94,7 +104,7 @@ export default function Profile() {
                                         <MDBCardText>Full Name</MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="9">
-                                        <MDBCardText className="text-muted">{getUserName(id)}</MDBCardText>
+                                        <MDBCardText className="text-muted">{user.full_name}</MDBCardText>
                                     </MDBCol>
                                 </MDBRow>
                                 <hr />
@@ -103,7 +113,7 @@ export default function Profile() {
                                         <MDBCardText>Age</MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="9">
-                                        <MDBCardText className="text-muted">{getUserAge(id)}</MDBCardText>
+                                        <MDBCardText className="text-muted">{user.age}</MDBCardText>
                                     </MDBCol>
                                 </MDBRow>
                                 <hr />
@@ -112,7 +122,7 @@ export default function Profile() {
                                         <MDBCardText>Gender</MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="9">
-                                        <MDBCardText className="text-muted">{getUserGender(id)}</MDBCardText>
+                                        <MDBCardText className="text-muted">{user.gender}</MDBCardText>
                                     </MDBCol>
                                 </MDBRow>
                                 <hr />
@@ -121,7 +131,7 @@ export default function Profile() {
                                         <MDBCardText>Email</MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="9">
-                                        <MDBCardText className="text-muted">{getEmail(id)}</MDBCardText>
+                                        <MDBCardText className="text-muted">{user.email}</MDBCardText>
                                     </MDBCol>
                                 </MDBRow>
                                 <hr />
@@ -130,16 +140,16 @@ export default function Profile() {
                                         <MDBCardText>Phone</MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="9">
-                                        <MDBCardText className="text-muted">{getUserPhone(id)}</MDBCardText>
+                                        <MDBCardText className="text-muted">{user.phone}</MDBCardText>
                                     </MDBCol>
                                 </MDBRow>
                                 <hr />
                                 <MDBRow>
                                     <MDBCol sm="3">
-                                        <MDBCardText>Address</MDBCardText>
+                                        <MDBCardText>Description</MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="9">
-                                        <MDBCardText className="text-muted">{getUserAddress(id)}</MDBCardText>
+                                        <MDBCardText className="text-muted">{user.description}</MDBCardText>
                                     </MDBCol>
                                 </MDBRow>
                             </MDBCardBody>

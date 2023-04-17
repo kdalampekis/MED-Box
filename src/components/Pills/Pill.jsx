@@ -12,6 +12,7 @@ import {useParams} from "react-router";
 import Comments from "./Comments";
 import {Alert, Button, Form, FormGroup, Input, Label} from "reactstrap";
 import axios from "axios";
+import { API_URL } from '../../api';
 
 
 export default function Pill() {
@@ -19,7 +20,7 @@ export default function Pill() {
     const [pill, setPill] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://192.168.1.100:8000/medb/get_pill/${id}/`)
+        axios.get(API_URL+`get_pill/${id}/`)
             .then(response => {
                 setPill(response.data);
             })

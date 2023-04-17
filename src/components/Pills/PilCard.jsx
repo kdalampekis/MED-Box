@@ -8,6 +8,7 @@ import Card from 'react-bootstrap/Card';
 import './pillCard.css';
 import Pop from "../Pop"
 import axios from "axios";
+import { API_URL } from '../../api';
 
 
 export default function PillCard() {
@@ -15,7 +16,7 @@ export default function PillCard() {
     const [pills, setPills] = useState([]);
 
     useEffect(() => {
-        axios.get('http://192.168.1.100:8000/medb/get_pills/')
+        axios.get(API_URL+'get_pills/')
             .then(response => {
                 setPills(response.data);
             })

@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {useParams} from "react-router";
 import axios from "axios";
+import { API_URL } from '../../api';
 
 
 const Comments = () => {
@@ -11,7 +12,7 @@ const Comments = () => {
 
 
     useEffect(() => {
-        axios.get(`http://192.168.1.100:8000/medb/get_comments/${1}/`)
+        axios.get(API_URL+`get_comments/${1}/`)
             .then(response => {
                 setComments(response.data);
                 console.log(response.data);

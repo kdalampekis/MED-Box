@@ -24,6 +24,7 @@ const UserForm = lazy(() => import("../components/AddForms/UserForm"));
 const PillCard = lazy(() => import("../components/Pills/PilCard"));
 const Pill = lazy(() => import("../components/Pills/Pill"));
 const Time = lazy(() => import("../components/AddForms/TimePicker"));
+const Calendar = lazy(() => import("../components/profile/Calendar"));
 
 
 
@@ -35,15 +36,16 @@ const ThemeRoutes = [
     element: <FullLayout />,
     children: [
       { path: "/", element: <Navigate to="/starter" /> },
-      { path: "/starter", exact: true, element: <Starter /> },
-      { path: "/pillForm", exact: true, element: <PillForm /> },
-      { path: "/userForm", exact: true, element: <UserForm /> },
-      { path: "/pillPerForm/:id", element: <PillPerForm /> },
-      { path: "/profileCard", exact: true, element: <ProfileCard />},
-      { path: "/pillCard", exact: true, element: <PillCard />},
-      { path: "/profile/:id", element: <Profile />},
+      { path: "/starter", exact: true, element: <Starter/> },
+      { path: "/pillForm", exact: true, element: <PillForm/> },
+      { path: "/userForm", exact: true, element: <UserForm/> },
+      { path: "/pillPerForm/:id", element: <PillPerForm/> },
+      { path: "/profileCard", exact: true, element: <ProfileCard/>},
+      { path: "/pillCard", exact: true, element: <PillCard/>},
+      { path: "/profile/:id", element: <Profile/>},
       { path: "/pill/:id", element: <Pill />},
       { path: "/time", exact: true, element: <Time /> },
+      { path: "/calendar", exact: true, element: <Calendar /> },
       { path: "/about", exact: true, element: <About /> },
       { path: "/alerts", exact: true, element: <Alerts /> },
       { path: "/badges", exact: true, element: <Badges /> },

@@ -15,6 +15,7 @@
     "@progress/kendo-react-dateinputs": "^5.12.1",
     "@progress/kendo-react-dropdowns": "^5.12.1",
     "@syncfusion/ej2-react-calendars": "^20.4.54",
+    "@syncfusion/ej2-react-schedule": "^21.1.39",
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -75,6 +76,7 @@
   "devDependencies": {
     "@mui/x-date-pickers": "^6.1.0",
     "@mui/x-date-pickers-pro": "^6.0.0",
+    "moment-timezone": "^0.5.43",
     "mui": "0.0.1",
     "react-modal": "^3.16.1",
     "react-time-picker": "^5.2.0"

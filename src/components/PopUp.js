@@ -1,59 +1,66 @@
-import React from "react";
-import "./PopUp.css"
-import {ListGroup, ListGroupItem, Button} from "reactstrap";
+import React, { useState, useEffect } from 'react';
+import {Button} from 'reactstrap';
+import Modal from 'react-bootstrap/Modal';
+import axios from 'axios';
+import { API_URL } from '../api';
 
-const timeData = [
-    {
-        title: "Morning",
-        icon: "bi bi-brightness-high",
-        color: "warning",
-    },
-    {
-        title: "Noon",
-        icon: "bi bi-cloud-moon",
-        color: "info",
-    },
-    {
-        title: "Night",
-        icon: "bi bi-moon-stars",
-        color: "primary",
-    },
-];
 
-function PopUp(props){
-    return( props.trigger) ? (
-     <div className="popup">
-         <div className="popup-inner">
-             <ListGroup flush className="mt-4">
-                 {timeData.map((feed, index) => (
-                     <ListGroupItem
-                         key={index}
-                         action
-                         href="#"
-                         className="d-flex align-items-center p-3 border-0"
-                     >
-                         <Button
-                             className="rounded-circle me-3"
-                             size="sm"
-                             color={feed.color}
-                         >
-                             <i className={feed.icon}/>
-                         </Button>
-                         {feed.title}
-                     </ListGroupItem>
+function Pop() {
+    const [show, setShow] = useState(false);
+    const [user, setUser] = useState(null);
 
-                 ))}
-             </ListGroup>
-             <div className="close-btn">
-                 <button type="button" className="btn-close" aria-label="Close" onClick={() => props.setTrigger(false)}/>
-             </div>
+    useEffect(() => {
+        const fetchNextUser = async () => {
+            const response = await axios.get(API_URL+ 'get_next_user/');
+            setUser(response.data);
+        };
 
-           <button className="close-btn" onClick={() => props.setTrigger(false)}>
-                 Done
-             </button>
-         </div>
-     </div>
-        ) : "";
+        fetchNextUser();
+    }, []);
+
+    useEffect(() => {
+        let timerId;
+
+        if (user) {
+            const now = new Date();
+            const alarmTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), user.alarm_time.split(':')[0], user.alarm_time.split(':')[1], user.alarm_time.split(':')[2]);
+
+            if (now < alarmTime) {
+                timerId = setTimeout(() => setShow(true), alarmTime.getTime() - now.getTime());
+            }
+        }
+
+        return () => clearTimeout(timerId);
+    }, [user]);
+
+    const handleClose = () => {
+        setShow(false);
+    };
+
+    const handleOk = () => {
+        setShow(false);
+    };
+
+    return (
+        <>
+            {show && user && (
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Time to take {user.pill_name}</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>It's {user.alarm_time}! Time for {user.full_name} to take {user.pill_name}.</Modal.Body>
+                    <Modal.Footer>
+                        <Button className="btn" outline color="success" onClick={handleOk}>
+                            OK
+                        </Button>
+                        <Button className="btn" outline color="danger" onClick={handleClose}>
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            )}
+        </>
+    );
 }
 
-export default PopUp;
+export default Pop;

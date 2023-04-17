@@ -6,12 +6,12 @@ import bg3 from "../assets/images/bg/bg3.jpg";
 import bg4 from "../assets/images/bg/bg4.jpg";
 import React, {useEffect, useState} from "react";
 import ProfileCard from "../components/profile/ProfileCard";
-import {getUserName, getUsers} from "../components/profile/fakeProfiles";
 import Instructions from "../components/Instructions";
 import ProjectTable from "../components/dashboard/ProjectTable";
 import {Link} from "react-router-dom";
 import axios from "axios";
-import async from "async";
+import { API_URL } from '../api';
+import Popup from "../components/PopUp";
 const BlogData = [
   {
     image: bg1,
@@ -52,10 +52,10 @@ function Starter(){
   const [next_user, set_next_user] = useState([])
 
   useEffect(() => {
-    axios.get('http://192.168.1.100:8000/medb/get_next_user/')
+    axios.get(API_URL+ 'get_next_user/')
         .then(response => {
           set_next_user(response.data);
-
+          console.log(next_user)
         })
         .catch(error => {
           console.log(error);
@@ -64,7 +64,7 @@ function Starter(){
 
   const [dateState, setDateState] = useState(new Date());
   useEffect(() => {
-    setInterval(() => setDateState(new Date()), 30000);
+    setInterval(() => setDateState(new Date()), 1000);
   }, []);
 
 
@@ -139,6 +139,7 @@ function Starter(){
         </Col>
       </Row>
       <Row/>
+      <Popup/>
       <Row>
         <Col sm="10" md="10" lg="10" xl="10">
           <ProfileCard/>
@@ -160,7 +161,7 @@ function Starter(){
       </Row>
       <Row>
         <Col sm="10" lg="10" xl="10">
-          <Instructions/>
+          <Instructions />
         </Col>
       </Row>
     </div>
