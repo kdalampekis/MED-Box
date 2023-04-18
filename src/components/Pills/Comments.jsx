@@ -12,7 +12,7 @@ const Comments = () => {
 
 
     useEffect(() => {
-        axios.get(API_URL+`get_comments/${1}/`)
+        axios.get(API_URL+`get_comments/${id}/`)
             .then(response => {
                 setComments(response.data);
                 console.log(response.data);
@@ -25,6 +25,9 @@ const Comments = () => {
         <Card>
             <CardBody>
                 <CardTitle tag="h2">Comments about this pill</CardTitle>
+                {comments.length === 0 ? (
+                    <p>Be the first to comment about this pill</p>
+                ) : (
                 <Table className="no-wrap mt-4 align-middle" responsive borderless>
                     <tbody>
                         {comments.map(comment => (
@@ -54,6 +57,7 @@ const Comments = () => {
                     ))}
                         </tbody>
                 </Table>
+                    )}
             </CardBody>
         </Card>
     );

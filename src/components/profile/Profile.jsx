@@ -77,7 +77,7 @@ export default function Profile() {
                                     </React.Fragment>
                                 ))}
                             </MDBCardBody>
-
+                            <hr style={{color: "white"}}/>
                             <MDBCardBody>
                                 <Link to={{pathname: `/pillPerForm/${id}`}} style={{ textDecoration: 'none' }}>
                                     <Button
@@ -91,7 +91,7 @@ export default function Profile() {
                                             margin: "10px",
                                         }}
                                     >
-                                        Add a pill
+                                        Subscribe to a pill
                                     </Button>
                                 </Link>
                             </MDBCardBody>

@@ -3,12 +3,18 @@ import { Button } from 'reactstrap';
 import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
 import { API_URL } from '../api';
+import { Howl, Howler } from 'howler';
 
 function PopUp() {
     const [show, setShow] = useState(false);
     const [user, setUser] = useState(null);
     const [alarmId, setAlarmId] = useState(null);
     const [error, setError] = useState(null);
+    const soundSrc = process.env.PUBLIC_URL + '/alarm.wav';
+    const sound = new Howl({
+        src: [soundSrc],
+        html5: true
+    });
 
     useEffect(() => {
         const fetchNextUser = async () => {
@@ -33,11 +39,17 @@ function PopUp() {
             const alarmTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), user.alarm_time.split(':')[0], user.alarm_time.split(':')[1], user.alarm_time.split(':')[2]);
 
             if (now < alarmTime) {
-                timerId = setTimeout(() => setShow(true), alarmTime.getTime() - now.getTime());
+                timerId = setTimeout(() => {
+                    setShow(true);
+                    sound.play();
+                }, alarmTime.getTime() - now.getTime());
             }
         }
 
-        return () => clearTimeout(timerId);
+        return () => {
+            clearTimeout(timerId);
+            sound.unload();
+        };
     }, [user]);
 
     const handleClose = () => {

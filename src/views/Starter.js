@@ -48,7 +48,11 @@ const BlogData = [
 
 function Starter(){
 
+
   const [next_user, set_next_user] = useState([])
+
+
+
 
   useEffect(() => {
     axios.get(API_URL+ 'get_next_user/')
