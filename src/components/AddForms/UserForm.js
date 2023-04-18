@@ -16,21 +16,26 @@ import { API_URL } from '../../api';
 import axios from 'axios';
 
 const UserForm = () => {
-    const [value, setValue] = useState(new Date());
+    const [value, setValue] = useState('');
     const [formattedValue, setFormattedValue] = useState('');
 
     const handleChange = (v, f) => {
         setValue(v);
         setFormattedValue(f);
+
+        // Convert the value to a Date object
+        const date = new Date(v);
+        if (!isNaN(date)) {
+            setValue(date);
+        }
+
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        // Format date
-        const formattedDate = value.toISOString().split('T')[0];
+        const formattedDate = value ? value.toISOString().split('T')[0] : '';
 
-        // Get the form data
         const formData = new FormData();
         formData.append('first_name', event.target.elements.first_name.value);
         formData.append('last_name', event.target.elements.last_name.value);
@@ -42,7 +47,7 @@ const UserForm = () => {
 
         // Send a POST request to the backend API endpoint
         axios
-            .post(API_URL + 'create_user/', formData)
+            .post(API_URL + 'register_user/', formData)
             .then((response) => {
                 // Handle the response
                 console.log(response.data);
@@ -87,9 +92,9 @@ const UserForm = () => {
                             <FormGroup>
                                 <Label for="gender">Gender</Label>
                                 <Input id="gender" name="gender" type="select">
-                                    <option>Male</option>
-                                    <option>Female</option>
-                                    <option>Other</option>
+                                    <option value="M">Male</option>
+                                    <option value="F">Female</option>
+                                    <option value="O">Other</option>
                                 </Input>
                             </FormGroup>
                             <FormGroup>

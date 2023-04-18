@@ -48,7 +48,7 @@ const PillPerForm = () => {
                 <Card>
                     <CardTitle tag="h6" className="border-bottom p-3 mb-0">
                         <i className="bi bi-bell me-2"> </i>
-                        Add a new Pill for {getUserName(id)}
+                        Add a new Pill for Test
                     </CardTitle>
                     <CardBody>
                         <Form>
