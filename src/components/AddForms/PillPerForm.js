@@ -33,9 +33,9 @@ const PillPerForm = () => {
     const [formValues, setFormValues] = useState([]);
     const [selectPills, setSelectPills] = useState([]);
     const [displayPills, setDisplayPills] = useState([])
-    const [timeValue, setTimeValue] = useState('10:00');
-    const [dayValue, setDayValue] = useState('Monday');
-    const [doseValue, setDoseValue] = useState([]);
+
+
+
 
 
 
@@ -57,16 +57,45 @@ const PillPerForm = () => {
     };
 
     const handleInputChange = (event, index, key) => {
-        const { value } = event.target;
-        setFormValues((prevValues) => {
-            const updatedValues = [...prevValues];
-            updatedValues[index] = {
-                ...updatedValues[index],
-                [key]: value,
-            };
-            return updatedValues;
-        });
+        const { name, value } = event.target;
+
+        if (name === `selectMulti-${index}`) {
+            // Convert the selectedOptions to an array of values
+            const selectedValues = Array.from(event.target.selectedOptions, option => option.value);
+            console.log(selectedValues);
+
+            setFormValues(prevValues => {
+                const updatedValues = [...prevValues];
+                updatedValues[index] = {
+                    ...updatedValues[index],
+                    [key]: selectedValues,
+                };
+                console.log(updatedValues);
+                return updatedValues;
+            });
+        } else if (name === `pillDosage-${index}`){
+            setFormValues(prevValues => {
+                const updatedValues = [...prevValues];
+                updatedValues[index] = {
+                    ...updatedValues[index],
+                    [key]: value,
+                };
+                console.log(updatedValues);
+                return updatedValues;
+            });
+        } else {
+            setFormValues(prevValues => {
+                const updatedValues = [...prevValues];
+                updatedValues[index] = {
+                    ...updatedValues[index],
+                    [key]: value,
+                };
+                console.log(updatedValues);
+                return updatedValues;
+            });
+        }
     };
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -97,17 +126,17 @@ const PillPerForm = () => {
         formElements.push(
             <div key={i} ref={ref}>
                 <FormGroup className="d-flex align-items-center p-3 border-0">
-                    <span className={`rounded-circle me-3 text-${getIcon(timeValue).color}`} style={{fontSize: "3rem"}}>
-                        <i className={getIcon(timeValue).icon} />
+                    <span className={`rounded-circle me-3 text-${getIcon(formValue.time).color}`} style={{fontSize: "3rem"}}>
+                        <i className={getIcon(formValue.time).icon} />
                     </span>
-                    <Label className="rounded-circle me-3" size="sm" color={getIcon(timeValue).color}>Select Time</Label>
+                    <Label className="rounded-circle me-3" size="sm" color={getIcon(formValue.time).color}>Select Time</Label>
                     <TimePicker
                         id={`pillTime-${i}`}
                         name={`pillTime-${i}`}
                         className="form-control no-border"
                         disableClock={true}
                         onChange={(value) => handleInputChange({ target: { value } }, i, "time")}
-                        value={formValue.time || timeValue}
+                        value={formValue.time}
                     />
                 </FormGroup>
                 <FormGroup>
@@ -117,16 +146,16 @@ const PillPerForm = () => {
                         multiple
                         name={`selectMulti-${i}`}
                         type="select"
-                        onChange={(value) => handleInputChange({ target: { value } }, i, "days")}
-                        value={formValue.days || dayValue}
+                        onChange={(event) => handleInputChange(event, i, "days")}
+                        value={formValue.days}
                         >
-                        <option>Monday</option>
-                        <option>Tuesday</option>
-                        <option>Wednesday</option>
-                        <option>Thursday</option>
-                        <option>Friday</option>
-                        <option>Saturday</option>
-                        <option>Sunday</option>
+                        <option value="1">Monday</option>
+                        <option value="2">Tuesday</option>
+                        <option value="3">Wednesday</option>
+                        <option value="4">Thursday</option>
+                        <option value="5">Friday</option>
+                        <option value="6">Saturday</option>
+                        <option value="7">Sunday</option>
                     </Input>
                 </FormGroup>
                 <FormGroup>
@@ -135,14 +164,14 @@ const PillPerForm = () => {
                         id={`pillDosage-${i}`}
                         name={`pillDosage-${i}`}
                         type="select"
-                        onChange={(value) => handleInputChange({ target: { value } }, i, "dosage")}
+                        onChange={(event) => handleInputChange(event, i, "dosage")}
                         value={formValue.dosage}
                         >
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
                     </Input>
                 </FormGroup>
             </div>

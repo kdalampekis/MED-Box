@@ -11,6 +11,7 @@ function PopUp() {
     const [alarmId, setAlarmId] = useState(null);
     const [error, setError] = useState(null);
     const soundSrc = process.env.PUBLIC_URL + '/alarm.wav';
+    const [alarmTimeFormatted, setAlarmTimeFormatted] = useState('');
     const sound = new Howl({
         src: [soundSrc],
         html5: true
@@ -43,6 +44,8 @@ function PopUp() {
                     setShow(true);
                     sound.play();
                 }, alarmTime.getTime() - now.getTime());
+                const alarmTimeFormatted = alarmTime.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+                setAlarmTimeFormatted(alarmTimeFormatted);
             }
         }
 
@@ -83,7 +86,7 @@ function PopUp() {
                     <Modal.Header closeButton>
                         <Modal.Title>Time to take {user.pill_name}</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>It's {user.alarm_time}! Time for {user.full_name} to take {user.pill_name}.</Modal.Body>
+                    <Modal.Body>It's {alarmTimeFormatted}! Time for {user.full_name} to take {user.pill_name}.</Modal.Body>
                     <Modal.Footer>
                         <Button className="btn" outline color="success" onClick={handleOk}>
                             OK
