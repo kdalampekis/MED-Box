@@ -25,6 +25,7 @@ const PillCard = lazy(() => import("../components/Pills/PilCard"));
 const Pill = lazy(() => import("../components/Pills/Pill"));
 const Time = lazy(() => import("../components/AddForms/TimePicker"));
 const Calendar = lazy(() => import("../components/profile/Calendar"));
+const Login = lazy(() => import("../components/AddForms/Login"));
 
 
 
@@ -37,6 +38,7 @@ const ThemeRoutes = [
     children: [
       { path: "/", element: <Navigate to="/starter" /> },
       { path: "/starter", exact: true, element: <Starter/> },
+      { path: "/login", exact: true, element: <Login/> },
       { path: "/pillForm", exact: true, element: <PillForm/> },
       { path: "/userForm", exact: true, element: <UserForm/> },
       { path: "/pillPerForm/:id", element: <PillPerForm/> },

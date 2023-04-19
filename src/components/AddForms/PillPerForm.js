@@ -108,10 +108,12 @@ const PillPerForm = () => {
             .then((response) => {
                 // Handle the response
                 console.log(response.data);
+                window.location.reload();
             })
             .catch((error) => {
                 // Handle the error
                 console.log(error);
+                window.location.reload();
             });
 
 

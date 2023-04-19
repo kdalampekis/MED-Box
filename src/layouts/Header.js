@@ -14,8 +14,11 @@ import {
   Button,
 } from "reactstrap";
 import { ReactComponent as LogoWhite } from "../assets/images/logos/xtremelogowhite.svg";
+import { useCookies } from "react-cookie";
+
 
 const Header = () => {
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   const [isOpen, setIsOpen] = React.useState(false);
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
 
@@ -26,6 +29,14 @@ const Header = () => {
   const showMobilemenu = () => {
     document.getElementById("sidebarArea").classList.toggle("showSidebar");
   };
+
+  const handleLogout = () =>{
+    console.log(cookies.user);
+    removeCookie("user", { path: "/" });
+    window.location.reload();
+
+  }
+
   return (
     <Navbar color="primary" dark expand="md" style={{textAlign: "center"}}>
       <div className="d-flex align-items-center">
@@ -37,7 +48,7 @@ const Header = () => {
           className="d-lg-none"
           onClick={() => showMobilemenu()}
         >
-          <i className="bi bi-list"></i>
+          <i className="bi bi-list"/>
         </Button>
       </div>
       <div className="hstack gap-2">
@@ -59,40 +70,18 @@ const Header = () => {
               </div>
             </Link>
           </NavItem>
-          {/*<NavItem>
-            <Link to="/about" className="nav-link">
-              About
-            </Link>
-          </NavItem>
-          <UncontrolledDropdown inNavbar nav>
-            <DropdownToggle caret nav>
-              DD Menu
-            </DropdownToggle>
-            <DropdownMenu end>
-              <DropdownItem>Option 1</DropdownItem>
-              <DropdownItem>Option 2</DropdownItem>
-              <DropdownItem divider />
-              <DropdownItem>Reset</DropdownItem>
-            </DropdownMenu>
-          </UncontrolledDropdown>*/}
         </Nav>
         <Dropdown isOpen={dropdownOpen} toggle={toggle}>
           <DropdownToggle color="primary">
             <img
-            src={"./users/user1.jpg"}
+            src={cookies.user.src}
             alt="profile"
             className="rounded-circle"
             width="30"
             />
           </DropdownToggle>
           <DropdownMenu>
-            <DropdownItem header>Info</DropdownItem>
-            <DropdownItem>My Account</DropdownItem>
-            <DropdownItem>Edit Profile</DropdownItem>
-            <DropdownItem divider />
-            <DropdownItem>My Balance</DropdownItem>
-            <DropdownItem>Inbox</DropdownItem>
-            <DropdownItem>Logout</DropdownItem>
+            <DropdownItem onClick={handleLogout}>Logout</DropdownItem>
           </DropdownMenu>
         </Dropdown>
     </Navbar>

@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
 import {
     Card,
-    Row,
-    Col,
     CardTitle,
     CardBody,
     Button,
     Form,
     FormGroup,
     Label,
-    Input,
+    Input, Container,
 } from 'reactstrap';
 import { DatePicker } from 'reactstrap-date-picker';
 import { API_URL } from '../../api';
 import axios from 'axios';
 
-const UserForm = () => {
+
+export default function UserForm() {
     const [value, setValue] = useState('');
     const [formattedValue, setFormattedValue] = useState('');
+
 
     const handleChange = (v, f) => {
         setValue(v);
@@ -51,22 +51,24 @@ const UserForm = () => {
             .then((response) => {
                 // Handle the response
                 console.log(response.data);
+                window.location = './login'
+
             })
             .catch((error) => {
                 // Handle the error
                 console.log(error);
+                window.location.reload();
             });
     };
 
-    return (
-        <Row>
-            <Col>
-                <Card>
+    return(
+        <Container style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: "50px"}}>
+            <Card className="w-100" style={{ maxWidth: "800px" }}>
                     <CardTitle tag="h6" className="border-bottom p-3 mb-0">
                         <i className="bi bi-bell me-2"> </i>
                         Add a new User
                     </CardTitle>
-                    <CardBody>
+                    <CardBody style={{ padding: 10, margin: 0 }}>
                         <Form onSubmit={handleSubmit}>
                             <FormGroup>
                                 <Label for="firstName">First Name</Label>
@@ -105,10 +107,9 @@ const UserForm = () => {
                         </Form>
                     </CardBody>
                 </Card>
-            </Col>
-        </Row>
-
+        </Container>
     );
 };
 
-export default UserForm;
+
+
