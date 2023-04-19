@@ -113,6 +113,7 @@ const Sidebar = () => {
                     ? "text-primary nav-link py-3"
                     : "nav-link text-secondary py-3"
                 }
+                onClick={() => showMobileMenu()}
               >
                 <i className={navi.icon}/>
                 <span className="ms-3 d-inline-block">{navi.title}</span>

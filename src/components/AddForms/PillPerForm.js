@@ -32,7 +32,7 @@ const PillPerForm = () => {
     const lastElementRef = useRef(null);
     const [formValues, setFormValues] = useState([]);
     const [selectPills, setSelectPills] = useState([]);
-    const [displayPills, setDisplayPills] = useState([])
+    const [displayPills, setDisplayPills] = useState([]);
 
 
 
@@ -62,7 +62,6 @@ const PillPerForm = () => {
         if (name === `selectMulti-${index}`) {
             // Convert the selectedOptions to an array of values
             const selectedValues = Array.from(event.target.selectedOptions, option => option.value);
-            console.log(selectedValues);
 
             setFormValues(prevValues => {
                 const updatedValues = [...prevValues];
@@ -70,7 +69,6 @@ const PillPerForm = () => {
                     ...updatedValues[index],
                     [key]: selectedValues,
                 };
-                console.log(updatedValues);
                 return updatedValues;
             });
         } else if (name === `pillDosage-${index}`){
@@ -80,7 +78,6 @@ const PillPerForm = () => {
                     ...updatedValues[index],
                     [key]: value,
                 };
-                console.log(updatedValues);
                 return updatedValues;
             });
         } else {
@@ -90,7 +87,6 @@ const PillPerForm = () => {
                     ...updatedValues[index],
                     [key]: value,
                 };
-                console.log(updatedValues);
                 return updatedValues;
             });
         }
