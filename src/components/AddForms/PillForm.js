@@ -26,10 +26,10 @@ const PillForm = () => {
         // Get the form values
         const name = formData.get('name');
         const description = formData.get('description');
-        const warning = formData.get('warning') + 'mg';
+        const warning = formData.get('warning');
         const company = formData.get('company');
         const inventory = formData.get('inventory');
-        const weight = formData.get('weight');
+        const weight = formData.get('weight') + 'mg';
         const prescription = formData.get('prescription');
 
         // Validate the form data
@@ -62,6 +62,7 @@ const PillForm = () => {
             .then((response) => {
                 // Handle the response
                 console.log(response.data);
+                window.location.reload();
             })
             .catch((error) => {
                 // Handle the error

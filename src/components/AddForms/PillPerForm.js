@@ -36,13 +36,11 @@ const PillPerForm = () => {
 
 
 
-
-
-
     useEffect(() => {
         axios.get(API_URL+'get_per_pills/')
             .then(response => {
                 setDisplayPills(response.data);
+                console.log(response.data);
             })
             .catch(error => {
                 console.log(error);
@@ -95,9 +93,28 @@ const PillPerForm = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        for (let i = 0; i < formValues; i++){
-            console.log(formValues[i]);
-        }
+        const user_id = id;
+        const pill_id= displayPills.find(pill => pill.name === selectPills).id;
+        console.log(user_id);
+        console.log(pill_id);
+        console.log(formValues);
+
+        axios
+            .post(API_URL + 'create_alarms/', {
+                user_id,
+                pill_id,
+                formValues
+            })
+            .then((response) => {
+                // Handle the response
+                console.log(response.data);
+            })
+            .catch((error) => {
+                // Handle the error
+                console.log(error);
+            });
+
+
     };
 
 
@@ -163,7 +180,7 @@ const PillPerForm = () => {
                         onChange={(event) => handleInputChange(event, i, "dosage")}
                         value={formValue.dosage}
                         >
-                        <option value="1">1</option>
+                            <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
