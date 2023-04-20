@@ -7,27 +7,23 @@ import Card from 'react-bootstrap/Card';
 import './pillCard.css';
 import axios from "axios";
 import { API_URL } from '../../api';
-import TestPopup from "../../views/TestPopup";
 import Pop from "../Pop";
 
 export default function PillCard() {
 
     const [pills, setPills] = useState([]);
-    const [showPopup, setShowPopup] = useState(false);
-    const handleClick = () => {
-        setShowPopup(true);
-    };
-
 
     useEffect(() => {
         axios.get(API_URL+'get_pills/')
             .then(response => {
                 setPills(response.data);
+                console.log(response.data);
             })
             .catch(error => {
                 console.log(error);
             });
     }, []);
+
 
 
     return (
@@ -49,7 +45,7 @@ export default function PillCard() {
                 <Col sm="10" md ="6" lg="10" xl="6" key={pill.id} style={{ borderRadius: '15px'}}>
                     <div className='pillCard'>
                         <Card style={{ width: '18rem' }}>
-                            <Card.Img variant="top" src={pill.imageSrc} />
+                            <Card.Img variant="top" src={pill.imageSrc}/>
                             <Card.Body className="p-3">
                                 <Card.Title>{pill.name}</Card.Title>
                                 <Card.Text>
@@ -62,7 +58,7 @@ export default function PillCard() {
                                     </div>
                                 </Card.Text>
                                 <div className="button-group">
-                                    <Pop/>
+                                    <Pop pill_id = {pill.id}/>
                                     <Link to={{pathname: `/pill/${pill.id}`}} style={{ textDecoration: 'none' }}>
                                         <Button className="btn" outline color="info">
                                             More Info
@@ -75,7 +71,6 @@ export default function PillCard() {
                 </Col>
             ))}
         </Row>
-            {showPopup && <TestPopup handleClose={() => setShowPopup(true)} />}
         </>
 
     );

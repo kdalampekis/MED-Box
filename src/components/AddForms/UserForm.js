@@ -7,7 +7,8 @@ import {
     Form,
     FormGroup,
     Label,
-    Input, Container,
+    Input,
+    Container,
 } from 'reactstrap';
 import { DatePicker } from 'reactstrap-date-picker';
 import { API_URL } from '../../api';
@@ -22,13 +23,11 @@ export default function UserForm() {
     const handleChange = (v, f) => {
         setValue(v);
         setFormattedValue(f);
-
         // Convert the value to a Date object
         const date = new Date(v);
         if (!isNaN(date)) {
             setValue(date);
         }
-
     };
 
     const handleSubmit = (event) => {
@@ -39,6 +38,7 @@ export default function UserForm() {
         const formData = new FormData();
         formData.append('first_name', event.target.elements.first_name.value);
         formData.append('last_name', event.target.elements.last_name.value);
+        formData.append('password', event.target.elements.password.value);
         formData.append('email', event.target.elements.email.value);
         formData.append('phone', event.target.elements.phone.value);
         formData.append('birth_date', formattedDate);
@@ -51,8 +51,7 @@ export default function UserForm() {
             .then((response) => {
                 // Handle the response
                 console.log(response.data);
-                window.location = './login'
-
+                window.location = './login';
             })
             .catch((error) => {
                 // Handle the error
@@ -61,12 +60,16 @@ export default function UserForm() {
             });
     };
 
+    const handleClick = () => {
+        window.location.reload();
+    }
+
     return(
         <Container style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: "50px"}}>
             <Card className="w-100" style={{ maxWidth: "800px" }}>
                     <CardTitle tag="h6" className="border-bottom p-3 mb-0">
-                        <i className="bi bi-bell me-2"> </i>
-                        Add a new User
+                        <i class="bi bi-arrow-left-circle" style={{fontSize: "30px", cursor:"pointer", color:"#2962FF"}} onClick={handleClick}/>
+                        <h3 style={{textAlign:"center"}}>Welcome</h3>
                     </CardTitle>
                     <CardBody style={{ padding: 10, margin: 0 }}>
                         <Form onSubmit={handleSubmit}>
@@ -77,6 +80,14 @@ export default function UserForm() {
                             <FormGroup>
                                 <Label for="lastName">Last Name</Label>
                                 <Input id="lastName" name="last_name" placeholder="eg Doe" type="text" />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="password">Password</Label>
+                                <Input id="password" name="password"  type="password" />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="repeat">Repeat the password</Label>
+                                <Input id="repeat" name="repeat"  type="password" />
                             </FormGroup>
                             <FormGroup>
                                 <Label for="email">Email</Label>

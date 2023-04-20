@@ -8,6 +8,7 @@ import {
     MDBCardBody,
     MDBCardImage,
 } from 'mdb-react-ui-kit';
+
 import {useParams} from "react-router";
 import Comments from "./Comments";
 import {Alert, Button, Form, FormGroup, Input, Label} from "reactstrap";
@@ -20,6 +21,10 @@ export default function Pill() {
     const { id } = useParams();
     const [pill, setPill] = useState([]);
     const [commentText, setCommentText] = useState("");
+    const myButton = document.getElementById('myButton');
+    const [disabled, setDisabled] = useState('');
+
+
 
     useEffect(() => {
         axios.get(API_URL+`get_pill/${id}/`)
@@ -53,6 +58,37 @@ export default function Pill() {
             });
 
     }
+
+    const handleClick = () => {
+        axios
+            .post(API_URL + 'deload/', {
+                pill_id: id,
+            })
+            .then((response) => {
+                // Handle the response
+                console.log(response.data);
+                window.location.reload();
+            })
+            .catch((error) => {
+                // Handle the error
+                console.log(error);
+            });
+    }
+
+    useEffect(() => {
+        axios.get(API_URL+`get_disable/${id}/`)
+            .then(response => {
+                setDisabled(response.data.disabled);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }, []);
+
+    if (disabled === true) {
+        myButton.disabled = true;
+    }
+
 
     return (
         <section style={{ backgroundColor: '#eee' }}>
@@ -115,7 +151,22 @@ export default function Pill() {
                                         <MDBCardText className="text-muted">{pill.inventory}</MDBCardText>
                                     </MDBCol>
                                 </MDBRow>
-                                <hr />
+                                <hr style={{color: "white"}}/>
+                                <Button
+                                    className="btn"
+                                    outline
+                                    color="danger"
+                                    style={{
+                                        position: "absolute",
+                                        bottom: 10,
+                                        right: 10,
+                                        margin: "10px",
+                                    }}
+                                    onClick={handleClick}
+                                    id="myButton"
+                                >
+                                    Empty
+                                </Button>
                             </MDBCardBody>
                         </MDBCard>
                     </MDBCol>

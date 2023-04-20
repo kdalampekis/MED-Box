@@ -1,3 +1,68 @@
 .no-border {
     border: none;
 }
+
+.custom-time-picker {
+    display: flex;
+    align-items: center;
+}
+
+.custom-time-picker__wrapper {
+    position: relative;
+}
+
+.custom-time-picker__inputGroup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    height: 30px;
+    padding: 0 0.5rem;
+    width: 100px;
+}
+
+.custom-time-picker__inputGroup__input {
+    border: none;
+    width: 50%;
+    text-align: center;
+}
+
+.custom-time-picker__inputGroup__divider {
+    font-weight: bold;
+    margin: 0 0.25rem;
+}
+
+.custom-time-picker__clock {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    display: none;
+    width: 140px;
+    max-height: 200px;
+    overflow: auto;
+}
+
+.custom-time-picker__clock--open {
+    display: block;
+}
+
+.custom-time-picker__clockButton {
+    background-color: #4d4dff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 0.8rem;
+    height: 25px;
+    padding: 0.3rem 0.5rem;
+    margin-left: 0.5rem;
+}

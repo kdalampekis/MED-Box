@@ -109,9 +109,7 @@ function Starter(){
           />
         </Col>
       </Row>*/}
-      {/***Sales & Feed***/}
 
-      {/***Table ***/}
       <Row>
         <Col sm="6" md="6" lg="6">
           <TopCards
@@ -134,7 +132,7 @@ function Starter(){
             <Col sm="6" md="6" lg="6">
               <Link to={{pathname: '/pillCard'}} style={{ textDecoration: 'none' }}>
               <TopCards
-                bg="bg-navy text-info"
+                bg="bg-info text-dark"
                 title="Refunds"
                 subtitle="Click me"
                 earning="Take a Pill"

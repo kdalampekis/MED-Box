@@ -2,51 +2,37 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import {useEffect, useState} from "react";
+import axios from "axios";
+import {API_URL} from "../../api";
 
-const events = [
-    {
-        id: 1,
-        title: 'event 1',
-        start: '2023-04-18T10:00:00',
-/*
-        end: '2023-04-18T12:00:00',
-*/
-    },
-    {
-        id: 2,
-        title: 'event 2',
-        start: '2023-04-18T13:00:00',
-/*
-        end: '2023-04-18T15:00:00',
-*/
-    },
-    { id: 3,
-        title: 'event 3',
-        start: '2023-04-18T18:00:00',
-/*
-        end: '2023-04-18T19:00:00',
-*/
-    },
-];
 
-function FullCalendarApp() {
+function FullCalendarApp(props) {
+
+    const [alarms, setAlarms] = useState([]);
+    console.log(events);
+    console.log(alarms);
+
+    useEffect(() => {
+        axios.get(API_URL+`get_user_alarms/${props.user_id}/`)
+            .then(response => {
+                setAlarms(response.data.alarms)
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }, []);
     return (
         <div className="App">
             <FullCalendar
                 plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-                initialView="dayGridMonth"
+                initialView="timeGridDay"
                 headerToolbar={{
-                    center: 'timeGridWeek,timeGridDay,new',
+                    center: 'timeGridWeek,timeGridDay',
                 }}
-                customButtons={{
-                    new: {
-                        text: 'new',
-                        click: () => console.log('new event'),
-                    },
-                }}
-                events={events}
+                events={alarms}
                 eventColor="info"
-                nowIndicator="info"
+                nowIndicator="danger"
                 dateClick={(e) => console.log(e.dateStr)}
                 eventClick={(e) => console.log(e.event.id)}
             />

@@ -58,7 +58,7 @@ export default function ProfileCard() {
                                         <div className="d-flex pt-2">
                                             <Link to={{ pathname: `/profile/${user.id}` }} style={{ textDecoration: 'none' }}>
                                                 <Button className="btn" outline color="info">
-                                                    info
+                                                    View Profile
                                                 </Button>
                                             </Link>
                                         </div>

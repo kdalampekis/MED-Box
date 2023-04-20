@@ -73,6 +73,20 @@ const Header = () => {
               </div>
             </Link>
           </NavItem>
+          <NavItem>
+            <Link to="/pillCard" className="nav-link">
+              <div>
+                <h2>Pills</h2>
+              </div>
+            </Link>
+          </NavItem>
+          <NavItem>
+            <Link to="/profileCard" className="nav-link">
+              <div>
+                <h2>Profiles</h2>
+              </div>
+            </Link>
+          </NavItem>
         </Nav>
         <Dropdown isOpen={dropdownOpen} toggle={toggle}>
           <DropdownToggle color="primary">

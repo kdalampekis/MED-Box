@@ -5,8 +5,7 @@ import TimePicker from 'react-time-picker';
 import "./TimePicker.css";
 import axios from "axios";
 import {API_URL} from "../../api";
-
-
+import "./button.css";
 const timeData = [
     {
         title: "Morning",
@@ -33,6 +32,7 @@ const PillPerForm = () => {
     const [formValues, setFormValues] = useState([]);
     const [selectPills, setSelectPills] = useState([]);
     const [displayPills, setDisplayPills] = useState([]);
+
 
 
 
@@ -99,6 +99,7 @@ const PillPerForm = () => {
         console.log(pill_id);
         console.log(formValues);
 
+
         axios
             .post(API_URL + 'create_alarms/', {
                 user_id,
@@ -113,7 +114,6 @@ const PillPerForm = () => {
             .catch((error) => {
                 // Handle the error
                 console.log(error);
-                window.location.reload();
             });
 
 
@@ -148,7 +148,7 @@ const PillPerForm = () => {
                     <TimePicker
                         id={`pillTime-${i}`}
                         name={`pillTime-${i}`}
-                        className="form-control no-border"
+                        className="custom-time-picker"
                         disableClock={true}
                         onChange={(value) => handleInputChange({ target: { value } }, i, "time")}
                         value={formValue.time}
@@ -220,9 +220,7 @@ const PillPerForm = () => {
                                     </FormGroup>
                                 ))}
                             <Label for="pillDosage">Set Time Intake</Label>
-                            <Button className="btn" outline color="info" style={{paddingLeft: "10px", borderRadius:"50%", marginLeft: "20px"}} onClick={handleAddElement}>
-                                +
-                            </Button>
+                            <button className="blue-button" onClick={handleAddElement}>+</button>
                             {formElements}
                             <Button type="submit">Submit</Button>
                         </Form>

@@ -5,16 +5,36 @@ import {Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import { API_URL } from '../../api';
-
+import "./projecttable.css";
 
 function getColor(pills_missed){
-  if(pills_missed >= 1 && pills_missed <=2){
+  if(pills_missed <= 3){
+    return "success";
+  }else if (pills_missed <= 4){
     return "warning";
-  }else if (pills_missed > 2){
-    return "danger";
   }else {
-    return "success"
+    return "danger"
   }
+}
+
+function getWarningText(pi){
+    if (pi === 0){
+        return "Great job! It looks like you took all your pills as prescribed. " +
+            "Keep up the good work and remember to continue taking your medication on time " +
+            "for optimal results."
+    }
+    else if(pi <= 3){
+        return "Hi there! It looks like you missed taking some pill. " +
+            "Don't worry, but please try to take your medication as prescribed " +
+            "to ensure the best results.";
+    }else if (pi <= 4){
+        return "Hey, it seems you missed taking quite a few pills. Please be careful and take your medication as prescribed to avoid any complications. " +
+            "Remember that missing doses can impact the effectiveness of your treatment.";
+    }else {
+        return "You missed taking many pills. This can significantly impact the effectiveness of your " +
+            "medication and put your health at risk."
+
+    }
 }
 
 const ProjectTables = () => {
@@ -28,7 +48,7 @@ const ProjectTables = () => {
         .catch(error => {
           console.log(error);
         });
-  }, []);
+  }, [])    ;
 
   return (
       <Card>
@@ -53,24 +73,23 @@ const ProjectTables = () => {
                               style={{maxWidth:"50px"}}
                             />
                           </Link>
-                          <div className="ms-5">
-                            <h6 className="mb-0" style={{color:"black"}}>{data.name}</h6>
-                            <span className="text-muted">{data.email}</span>
-
-                          </div>
+                            <div className="ms-5 mt-3">
+                                <h6 className="mb-0" style={{color:"black"}}>{data.name}</h6>
+                                <span className="text-muted">{data.email}</span>
+                                <div style={{display: "inline-block"}}>
+                                    <h5 className="mb-0" style={{color:"black", display: "inline-block"}}>Pills Missed</h5>
+                                    <Badge color="dark" className="ms-4" style={{display: "inline-block"}}>{data.missed}</Badge>
+                                </div>
+                            </div>
                         </div>
                       </td>
                       <td>
                           <div className="d-flex align-items-center p-2">
                               <h5 className="mb-0" style={{color:"black"}}>
-                                  Pills Missed
-                                    <Badge color="dark" className="ms-3">
-                                      {data.missed}
-                                    </Badge>
+                                  {getWarningText(data.missed)}
                               </h5>
                           </div>
                       </td>
-                      <td style={{color:"black"}}>{data.date}</td>
                   </Alert>
               ))}
             </tbody>

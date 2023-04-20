@@ -17,9 +17,7 @@ import {
     MDBListGroupItem
 } from 'mdb-react-ui-kit';
 import {useParams} from "react-router";
-import {getUserName, getUserAge, getUserGender, getUserPills, getUserImg, getEmail, getPillSum, getUserPhone, getUserAddress} from "./fakeProfiles";
 import {Badge, Button} from "reactstrap";
-import SalesChart from "../dashboard/SalesChart";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import { API_URL } from '../../api';
@@ -159,7 +157,7 @@ export default function Profile() {
                             <MDBCard className="mb-4">
                                 <MDBCardBody>
                                     <MDBRow>
-                                        <Calendar/>
+                                        <Calendar user_id={id}/>
                                     </MDBRow>
                                 </MDBCardBody>
                             </MDBCard>
