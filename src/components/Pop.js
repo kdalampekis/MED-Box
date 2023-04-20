@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {Button} from 'reactstrap';
 import Modal from 'react-bootstrap/Modal';
+import {Link} from "react-router-dom";
 
 function Pop() {
     const [show, setShow] = useState(false);
@@ -20,9 +21,11 @@ function Pop() {
                 </Modal.Header>
                 <Modal.Body>Click Ok to <strong>continue</strong> or Cancel to <strong>return</strong></Modal.Body>
                 <Modal.Footer>
-                    <Button className="btn" outline color="success" onClick={handleClose}>
-                        OK
-                    </Button>
+                    <Link to={{pathname:'/step1'}} style={{textDecoration: "none"}}>
+                        <Button className="btn" outline color="success" onClick={handleClose}>
+                            OK
+                        </Button>
+                    </Link>
                     <Button className="btn" outline color="danger" onClick={handleClose}>
                         Close
                     </Button>

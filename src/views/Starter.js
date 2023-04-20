@@ -6,7 +6,7 @@ import bg3 from "../assets/images/bg/bg3.jpg";
 import bg4 from "../assets/images/bg/bg4.jpg";
 import React, {useEffect, useState} from "react";
 import ProfileCard from "../components/profile/ProfileCard";
-import Instructions from "../components/Instructions";
+import Instructions from "../components/Instructions/Instructions";
 import ProjectTable from "../components/dashboard/ProjectTable";
 import {Link} from "react-router-dom";
 import axios from "axios";
