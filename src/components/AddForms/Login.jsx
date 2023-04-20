@@ -14,7 +14,8 @@ export default function Login({ onLogin }) {
             .post(API_URL + 'login/', {username, password})
             .then((response) => {
                 const src = response.data.img;
-                onLogin({ username, password, src });
+                const id = response.data.user_id
+                onLogin({ username, password, src, id });
                 console.log(response.data);
             })
             .catch((error) => {

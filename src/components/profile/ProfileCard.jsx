@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 import { API_URL } from '../../api';
 import moment from 'moment-timezone';
+import styles from "./card.css";
+import classNames from "classnames";
 
 
 export default function ProfileCard() {
@@ -20,12 +22,14 @@ export default function ProfileCard() {
                 console.log(error);
             });
     }, []);
+    const imageClasses = classNames(styles.image, 'rounded-circle');
+
 
 
     return (
         <Row>
             {users.map(user => (
-                <Col sm="10" md="10" lg="10" xl="6">
+                <Col sm="10" md="6" lg="7" xl="6">
                     <MDBContainer>
                         <MDBCard style={{ borderRadius: '15px' }}>
                             <MDBCardBody className="p-4">
@@ -34,8 +38,7 @@ export default function ProfileCard() {
                                         <MDBCardImage
                                             src={user.imgSrc}
                                             alt="avatar"
-                                            className="rounded-circle"
-                                            style={{ width: '150px' }}
+                                            className={imageClasses}
                                             fluid />
                                     </div>
                                     <div className="flex-grow-1 ms-3">

@@ -13,11 +13,13 @@ import Comments from "./Comments";
 import {Alert, Button, Form, FormGroup, Input, Label} from "reactstrap";
 import axios from "axios";
 import { API_URL } from '../../api';
+import {useCookies} from "react-cookie";
 
 
 export default function Pill() {
     const { id } = useParams();
     const [pill, setPill] = useState([]);
+    const [commentText, setCommentText] = useState("");
 
     useEffect(() => {
         axios.get(API_URL+`get_pill/${id}/`)
@@ -28,6 +30,29 @@ export default function Pill() {
                 console.log(error);
             });
     }, []);
+
+
+    const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+
+    const handleSubmit = (event) =>{
+        event.preventDefault();
+        axios
+            .post(API_URL + 'post_pill_comment/', {
+                user_id: cookies.user.id,
+                pill_id: id,
+                commentText: commentText,
+            })
+            .then((response) => {
+                // Handle the response
+                console.log(response.data);
+                window.location.reload();
+            })
+            .catch((error) => {
+                // Handle the error
+                console.log(error);
+            });
+
+    }
 
     return (
         <section style={{ backgroundColor: '#eee' }}>
@@ -97,12 +122,17 @@ export default function Pill() {
                     <MDBCol lg="7">
                         <Alert color="danger">{pill.warning}</Alert>
                         <Comments id={pill.id}/>
-                        <Form>
+                        <Form onSubmit={handleSubmit}>
                             <FormGroup>
                                 <Label for="exampleText">Leave a Comment about this pill</Label>
-                                <Input id="exampleText" name="text" type="textarea" />
+                                <Input
+                                    id="exampleText"
+                                    name="commentText"
+                                    type="textarea"
+                                    value={commentText}
+                                    onChange={(e) => setCommentText(e.target.value)}                                />
                             </FormGroup>
-                            <Button>Submit</Button>
+                            <Button type="submit">Post</Button>
                         </Form>
                     </MDBCol>
                 </MDBRow>

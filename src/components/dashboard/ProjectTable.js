@@ -50,8 +50,7 @@ const ProjectTables = () => {
                               src={data.imgSrc}
                               className="rounded-circle"
                               alt="avatar"
-                              width="45"
-                              height="45"
+                              style={{maxWidth:"50px"}}
                             />
                           </Link>
                           <div className="ms-5">
@@ -62,11 +61,14 @@ const ProjectTables = () => {
                         </div>
                       </td>
                       <td>
-                          <h5 className="mb-0" style={{color:"black"}}>Pills Missed
-                            <Badge color="dark" className="ms-3">
-                              {data.missed}
-                            </Badge>
-                          </h5>
+                          <div className="d-flex align-items-center p-2">
+                              <h5 className="mb-0" style={{color:"black"}}>
+                                  Pills Missed
+                                    <Badge color="dark" className="ms-3">
+                                      {data.missed}
+                                    </Badge>
+                              </h5>
+                          </div>
                       </td>
                       <td style={{color:"black"}}>{data.date}</td>
                   </Alert>

@@ -113,7 +113,7 @@ function Starter(){
 
       {/***Table ***/}
       <Row>
-        <Col sm="6" md="6" lg="4">
+        <Col sm="6" md="6" lg="6">
           <TopCards
               bg="bg-light-success text-success"
               title="Profit"
@@ -122,7 +122,7 @@ function Starter(){
               icon="bi bi-clock"
           />
         </Col>
-          <Col sm="6" md="6" lg="4">
+          <Col sm="6" md="6" lg="6">
           <TopCards
               bg="bg-light-danger text-danger"
               title="Refunds"
@@ -131,8 +131,19 @@ function Starter(){
               icon="bi bi-calendar"
           />
           </Col>
-            <Col sm="6" md="6" lg="4">
-            <TopCards
+            <Col sm="6" md="6" lg="6">
+              <Link to={{pathname: '/pillCard'}} style={{ textDecoration: 'none' }}>
+              <TopCards
+                bg="bg-navy text-info"
+                title="Refunds"
+                subtitle="Click me"
+                earning="Take a Pill"
+                icon = "bi bi-capsule"
+            />
+              </Link>
+        </Col>
+        <Col  sm="6" md="6" lg="6">
+          <TopCards
                 bg="bg-light-warning text-danger"
                 title="Refunds"
                 subtitle="Next Pill Intake"
@@ -141,28 +152,10 @@ function Starter(){
             />
         </Col>
       </Row>
-      <Row/>
-      <Row>
-        <Col sm="10" md="10" lg="10" xl="10">
-          <ProfileCard/>
-        </Col>
-      </Row>
-      <Row>
-        <Col xs="10" sm="10" md="10" lg="10" xl="10">
-          <Link to={{pathname: '/pillCard'}} style={{ textDecoration: 'none' }}>
-            <Button className="btn" color="info" size="lg" block>
-              Give me a Pill!
-            </Button>
-          </Link>
-        </Col>
-      </Row>
+      <ProfileCard/>
       <Row >
-        <Col xs="10" sm="10" md="10" lg="10" xl="10">
+        <Col xs="10" sm="10" md="12" lg="12" xl="12">
           <ProjectTable/>
-        </Col>
-      </Row>
-      <Row>
-        <Col sm="10" lg="10" xl="10">
           <Instructions />
         </Col>
       </Row>

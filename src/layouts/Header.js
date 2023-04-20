@@ -17,6 +17,9 @@ import { ReactComponent as LogoWhite } from "../assets/images/logos/xtremelogowh
 import { useCookies } from "react-cookie";
 
 
+
+
+
 const Header = () => {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   const [isOpen, setIsOpen] = React.useState(false);
@@ -77,7 +80,8 @@ const Header = () => {
             src={cookies.user.src}
             alt="profile"
             className="rounded-circle"
-            width="30"
+            style={{width:"30px"}}
+
             />
           </DropdownToggle>
           <DropdownMenu>

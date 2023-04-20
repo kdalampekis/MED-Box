@@ -11,6 +11,7 @@ const Comments = () => {
     const [comments, setComments] = useState([]);
 
 
+
     useEffect(() => {
         axios.get(API_URL+`get_comments/${id}/`)
             .then(response => {

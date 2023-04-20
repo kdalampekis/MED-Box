@@ -12,7 +12,20 @@ export default function Instructions(){
                             <span>User manual</span>
                 </CardTitle>
                 <CardBody>
-                    <h3>The specifics will be decided later</h3>
+                    <h3>1. Go get a glass of water</h3>
+                    <div style={{textAlign:"center"}}>
+                        <p style={{fontSize: "20px"}}>Drinking water when taking a pill helps to
+                            ensure proper absorption and avoid irritation to the esophagus,
+                            while also preventing dehydration.</p>
+                    </div>
+                    <h3>2. Stand in a visible spot so the camera can detect you</h3>
+                    <div style={{textAlign:"center"}}>
+                        <p style={{fontSize: "20px"}}>When using a camera with a machine learning (ML) algorithm to detect your presence,
+                            it is important to take a step back. This allows the algorithm to better analyze your
+                            features and improve accuracy, while also preventing distortion that can occur when you
+                            are too close to the camera. By giving the ML algorithm a clear view of you, you can ensure
+                            that it can properly detect and identify you.</p>
+                    </div>
                 </CardBody>
             </Card>
   )
