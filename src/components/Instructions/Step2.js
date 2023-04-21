@@ -3,6 +3,8 @@ import React from "react";
 import "./steps.css";
 import {Link} from "react-router-dom";
 export default function Step2(){
+
+
     return(
         <Card className="card">
             <CardTitle tag="h6" className="border-bottom p-3 mb-0">
@@ -36,7 +38,7 @@ export default function Step2(){
                     </div>
                     <div className="btn2">
                         <Button className="btn" color="info" size="lg">
-                            Next
+                            Run ML
                         </Button>
                     </div>
                 </div>

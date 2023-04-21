@@ -10,7 +10,6 @@ import {API_URL} from "../../api";
 function FullCalendarApp(props) {
 
     const [alarms, setAlarms] = useState([]);
-    console.log(events);
     console.log(alarms);
 
     useEffect(() => {
@@ -33,8 +32,6 @@ function FullCalendarApp(props) {
                 events={alarms}
                 eventColor="info"
                 nowIndicator="danger"
-                dateClick={(e) => console.log(e.dateStr)}
-                eventClick={(e) => console.log(e.event.id)}
             />
         </div>
     );
