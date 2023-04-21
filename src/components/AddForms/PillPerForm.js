@@ -34,8 +34,6 @@ const PillPerForm = () => {
     const [displayPills, setDisplayPills] = useState([]);
 
 
-
-
     useEffect(() => {
         axios.get(API_URL+'get_per_pills/')
             .then(response => {
@@ -98,8 +96,6 @@ const PillPerForm = () => {
         console.log(user_id);
         console.log(pill_id);
         console.log(formValues);
-
-
         axios
             .post(API_URL + 'create_alarms/', {
                 user_id,

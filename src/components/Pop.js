@@ -42,15 +42,9 @@ function Pop(props) {
                 </Modal.Header>
                 <Modal.Body>Click Ok to <strong>continue</strong> or Cancel to <strong>return</strong></Modal.Body>
                 <Modal.Footer>
-
-                    <Link to={{pathname:'/step1'}} style={{textDecoration: "none"}}>
-
                         <Button className="btn" outline color="success" onClick={handleOk}>
                             OK
                         </Button>
-
-                    </Link>
-
                     <Button className="btn" outline color="danger" onClick={handleClose}>
                         Close
                     </Button>

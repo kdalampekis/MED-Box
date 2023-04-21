@@ -1,9 +1,28 @@
 import {Button, Card, CardBody, CardTitle, Row} from "reactstrap";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import "./steps.css";
 import {Link} from "react-router-dom";
+import axios from "axios";
+import {API_URL} from "../../api";
+import {useParams} from "react-router";
 export default function Step2(){
 
+    const { id } = useParams();
+    console.log(id);
+    const[takenData, sendTakenData] = useState(false);
+
+
+    useEffect(() => {
+        if (takenData){
+            axios.post(API_URL + `take_medication/${id}/`)
+                .then(response => {
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        }
+    } ,[]);
 
     return(
         <Card className="card">
@@ -30,14 +49,14 @@ export default function Step2(){
                 <hr style={{color: "white"}}/>
                 <div className="button-group" style={{padding:"20px"}}>
                     <div className="btn1">
-                        <Link to={{pathname:'/step1'}} style={{textDecoration: "none"}}>
+                        <Link to={{pathname:'/step1/id'}} style={{textDecoration: "none"}}>
                             <Button className="btn" color="info" size="lg">
                                 Back
                             </Button>
                         </Link>
                     </div>
                     <div className="btn2">
-                        <Button className="btn" color="info" size="lg">
+                        <Button className="btn" color="info" size="lg" onClick={() => sendTakenData(true)}>
                             Run ML
                         </Button>
                     </div>

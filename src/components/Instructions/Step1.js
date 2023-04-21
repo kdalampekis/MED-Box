@@ -2,8 +2,14 @@ import {Button, Card, CardBody, CardTitle, Row} from "reactstrap";
 import React from "react";
 import "./steps.css";
 import {Link} from "react-router-dom";
+import {useParams} from "react-router";
+
 
 export default function Step1(){
+
+    const { id } = useParams();
+    console.log(id);
+
     return(
         <Card className="card">
             <CardTitle tag="h6" className="border-bottom p-3 mb-0">
@@ -30,7 +36,7 @@ export default function Step1(){
                         </Button>
                     </div>
                     <div className="btn2">
-                        <Link to={{pathname:'/step2'}} style={{textDecoration: "none"}}>
+                        <Link to={{pathname:`/step2/${id}`}} style={{textDecoration: "none"}}>
                             <Button className="btn" color="info" size="lg" >
                                 Next
                             </Button>

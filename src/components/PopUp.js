@@ -4,11 +4,12 @@ import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
 import { API_URL } from '../api';
 import { Howl, Howler } from 'howler';
+import {Link, Navigate} from "react-router-dom";
 
 function PopUp() {
     const [show, setShow] = useState(false);
     const [user, setUser] = useState(null);
-    const [alarmId, setAlarmId] = useState(null);
+    const [alarmId, setAlarmId] = useState();
     const [error, setError] = useState(null);
     const soundSrc = process.env.PUBLIC_URL + '/alarm.wav';
     const [alarmTimeFormatted, setAlarmTimeFormatted] = useState('');
@@ -23,6 +24,7 @@ function PopUp() {
                 const response = await axios.get(API_URL + 'get_next_user/');
                 setUser(response.data);
                 setAlarmId(response.data.alarm_id);
+                console.log(response.data);
                 setError(null);
             } catch (error) {
                 setError(error.message);
@@ -57,22 +59,14 @@ function PopUp() {
 
     const handleClose = () => {
         setShow(false);
-        sendTakenData(false);
+        sound.unload();
+
     };
 
     const handleOk = () => {
         setShow(false);
-        sendTakenData(true);
-    };
+        sound.unload();
 
-    const sendTakenData = (taken) => {
-        axios.post(API_URL + `take_medication/${alarmId}/`, { taken: taken })
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
     };
 
     if (error) {
@@ -88,9 +82,11 @@ function PopUp() {
                     </Modal.Header>
                     <Modal.Body>It's {alarmTimeFormatted}! Time for {user.full_name} to take {user.pill_name}.</Modal.Body>
                     <Modal.Footer>
-                        <Button className="btn" outline color="success" onClick={handleOk}>
-                            OK
-                        </Button>
+                        <Link to={{ pathname: `/step1/${alarmId}`}}>
+                            <Button className="btn" outline color="success" onClick={handleOk}>
+                                OK
+                            </Button>
+                        </Link>
                         <Button className="btn" outline color="danger" onClick={handleClose}>
                             Close
                         </Button>
