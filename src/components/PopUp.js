@@ -24,7 +24,6 @@ function PopUp() {
                 const response = await axios.get(API_URL + 'get_next_user/');
                 setUser(response.data);
                 setAlarmId(response.data.alarm_id);
-                console.log(response.data);
                 setError(null);
             } catch (error) {
                 setError(error.message);
@@ -33,6 +32,7 @@ function PopUp() {
 
         fetchNextUser();
     }, []);
+
 
     useEffect(() => {
         let timerId;
