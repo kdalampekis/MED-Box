@@ -17,6 +17,7 @@ export default function Step2(){
             axios.post(API_URL + `take_medication/${id}/`)
                 .then(response => {
                     console.log(response.data);
+                    window.location.href = "/";
                 })
                 .catch(error => {
                     console.log(error);

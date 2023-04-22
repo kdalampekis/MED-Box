@@ -55,7 +55,7 @@ export default function ProfileCard() {
                                                 <p className="text-muted">No prescription pills scheduled.</p>
                                             }
                                         </div>
-                                        <div className="d-flex pt-2">
+                                        <div className="d-flex pt-2" style={{padding: "10px"}}>
                                             <Link to={{ pathname: `/profile/${user.id}` }} style={{ textDecoration: 'none' }}>
                                                 <Button className="btn" outline color="info">
                                                     View Profile

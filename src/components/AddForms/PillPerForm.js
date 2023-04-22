@@ -1,4 +1,4 @@
-import { Card, Row, Col, CardTitle, CardBody, Button, Form, FormGroup, Label, Input} from "reactstrap";
+import {Card, Row, Col, CardTitle, CardBody, Button, Form, FormGroup, Label, Input, Alert} from "reactstrap";
 import React, {useEffect, useState, useRef} from "react";
 import { useParams } from "react-router";
 import TimePicker from 'react-time-picker';
@@ -32,6 +32,8 @@ const PillPerForm = () => {
     const [formValues, setFormValues] = useState([]);
     const [selectPills, setSelectPills] = useState([]);
     const [displayPills, setDisplayPills] = useState([]);
+    const [err, showErr] = useState(false);
+
 
 
     useEffect(() => {
@@ -105,11 +107,13 @@ const PillPerForm = () => {
             .then((response) => {
                 // Handle the response
                 console.log(response.data);
-                window.location.reload();
+                window.location.href = "/";
             })
             .catch((error) => {
                 // Handle the error
                 console.log(error);
+                showErr(true);
+
             });
 
 
@@ -194,6 +198,7 @@ const PillPerForm = () => {
         <Row>
             <Col>
                 <Card>
+                    {err && <Alert color="danger">Something went wrong please try again</Alert>}
                     <CardTitle tag="h6" className="border-bottom p-3 mb-0">
                         <i className="bi bi-bell me-2"> </i>
                         Add a new Pill for Test

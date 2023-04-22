@@ -8,7 +8,7 @@ import {
     Form,
     FormGroup,
     Label,
-    Input
+    Input, Alert
 } from "reactstrap";
 import React, {useState} from "react";
 import axios from "axios";
@@ -16,6 +16,10 @@ import {API_URL} from "../../api";
 import FormAlarm from "./FormAlarm";
 
 const PillForm = () => {
+
+    const [full, setFull] = useState(false);
+    const [message, setMessage] = useState('');
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -62,11 +66,14 @@ const PillForm = () => {
             .then((response) => {
                 // Handle the response
                 console.log(response.data);
-                window.location.reload();
+                if (response.data.full){
+                    setFull(true);
+                    setMessage(response.data.message);
+
+                }
             })
             .catch((error) => {
-                // Handle the error
-                console.log(error);
+               console.log(error);
             });
     };
 
@@ -74,8 +81,8 @@ const PillForm = () => {
     return (
         <Row>
             <Col>
-
                 <Card>
+                    {full && <Alert color="danger"><h3>{message}</h3></Alert>}
                     <CardTitle tag="h6" className="border-bottom p-3 mb-0">
                         <i className="bi bi-bell me-2"> </i>
                         Add a new Pill
