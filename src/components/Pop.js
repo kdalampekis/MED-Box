@@ -17,13 +17,15 @@ function Pop(props) {
 
     const handleClick = async () => {
         console.log(box)
-        if (box) {
+
             try {
                 const response = await axios.post(API_URL + 'take_pill/', {pill_id: props.pill_id});
                 setMessage(response.data.message);
             } catch (error) {
                 setError(error);
             }
+        if (box) {
+            handleClick();
         }
     };
 
