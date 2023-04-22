@@ -15,39 +15,43 @@ function Pop(props) {
     const handleShow = () => setShow(true);
 
 
-    const handleClick = async () => {
-        console.log(box)
-
+    async function fetchBox() {
+        try {
+            const response = await axios.get(API_URL + 'get_box/');
+            console.log(response.data);
+            setBox(response.data.box);
+            setMessage(response.data.message);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    async function handleClick() {
+         fetchBox();
+        if (box) {
             try {
-                const response = await axios.post(API_URL + 'take_pill/', {pill_id: props.pill_id});
+                const response = await axios.post(API_URL + 'take_pill/', { pill_id: props.pill_id, 'box': box });
                 setMessage(response.data.message);
+                setBox(false);
+                console.log(response.data.message);
             } catch (error) {
                 setError(error);
             }
-        if (box) {
-            handleClick();
         }
-    };
+        setShow(true);
+    }
 
-    useEffect(() => {
-        const fetchBox = async () => {
-            try {
-                const response = await axios.get(API_URL + 'get_box/');
-                setBox(response.data.box);
-                console.log(response.data.box);
-                setMessage(response.data.message);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-
-        fetchBox();
-    }, [message]);
-
-
-
-
-    function handleOk(){
+     async function handleOk(){
+         await fetchBox();
+         if (box) {
+             try {
+                 const response = await axios.post(API_URL + 'take_pill/', { pill_id: props.pill_id, 'box': box });
+                 setMessage(response.data.message);
+                 setBox(false);
+                 console.log(response.data.message);
+             } catch (error) {
+                 setError(error);
+             }
+         }
         setShow(false);
     }
 
