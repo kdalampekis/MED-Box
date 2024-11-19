@@ -8,9 +8,9 @@ import { API_URL } from '../../api';
 import "./projecttable.css";
 
 function getColor(pills_missed){
-  if(pills_missed <= 3){
+  if(pills_missed <= 1){
     return "success";
-  }else if (pills_missed <= 4){
+  }else if (pills_missed <= 2){
     return "warning";
   }else {
     return "danger"
