@@ -9,7 +9,7 @@ export default function Step2(){
 
     const { id } = useParams();
     console.log(id);
-    const[takenData, sendTakenData] = useState(false);
+    const[takenData, sendTakenData] = useState(true);
 
 
     useEffect(() => {
@@ -58,7 +58,7 @@ export default function Step2(){
                     </div>
                     <div className="btn2">
                         <Button className="btn" color="info" size="lg" onClick={() => sendTakenData(true)}>
-                            Run ML
+                            Give me 
                         </Button>
                     </div>
                 </div>

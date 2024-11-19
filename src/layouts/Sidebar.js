@@ -11,87 +11,17 @@ const navigation = [
   {
     title: "PillForm",
     href: "/pillForm",
-    icon: "bi bi-textarea-resize",
+    icon: "bi bi-card-text",
   },
   {
-    title: "ProfileCard",
+    title: "Profiles",
     href: "/profileCard",
-    icon: "bi bi-textarea-resize",
-  },
-  {
-    title: "UserForm",
-    href: "/userForm",
     icon: "bi bi-textarea-resize",
   },
   {
     title: "Take a Pill",
     href: "/pillCard",
-    icon: "bi bi-textarea-resize",
-  },
-  {
-    title: "Alert",
-    href: "/alerts",
     icon: "bi bi-bell",
-  },
-  {
-    title: "Step1",
-    href: "/step1",
-    icon: "bi bi-patch-check",
-  },
-  {
-    title: "Step2",
-    href: "/step2",
-    icon: "bi bi-patch-check",
-  },
-  {
-    title: "Calendar",
-    href: "/calendar",
-    icon: "bi bi-patch-check",
-  },
-  {
-    title: "Login",
-    href: "/login",
-    icon: "bi bi-card-text",
-  },
-  {
-    title: "Badges",
-    href: "/badges",
-    icon: "bi bi-patch-check",
-  },
-  {
-    title: "Buttons",
-    href: "/buttons",
-    icon: "bi bi-hdd-stack",
-  },
-  {
-    title: "Cards",
-    href: "/cards",
-    icon: "bi bi-card-text",
-  },
-  {
-    title: "Grid",
-    href: "/grid",
-    icon: "bi bi-columns",
-  },
-  {
-    title: "Table",
-    href: "/table",
-    icon: "bi bi-layout-split",
-  },
-  {
-    title: "Forms",
-    href: "/forms",
-    icon: "bi bi-textarea-resize",
-  },
-  {
-    title: "Breadcrumbs",
-    href: "/breadcrumbs",
-    icon: "bi bi-link",
-  },
-  {
-    title: "About",
-    href: "/about",
-    icon: "bi bi-people",
   },
 ];
 
@@ -130,15 +60,6 @@ const Sidebar = () => {
               </Link>
             </NavItem>
           ))}
-          <Button
-            color="danger"
-            tag="a"
-            target="_blank"
-            className="mt-3"
-            href="https://www.wrappixel.com/templates/xtreme-react-redux-admin/?ref=33"
-          >
-            Upgrade To Pro
-          </Button>
         </Nav>
       </div>
     </div>

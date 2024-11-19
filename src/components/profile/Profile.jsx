@@ -66,7 +66,7 @@ export default function Profile() {
                                     <React.Fragment key={pill.id}>
                                         <MDBCardText className="mt-2 mb-2" style={{ fontSize: '.77rem'}}>
                                             <h5>{pill.name}
-                                                <Badge color="secondary" style={{marginLeft: '8px'}}>{0}/{3}</Badge>
+                                                <Badge color="secondary" style={{marginLeft: '8px'}}>{3}</Badge>
                                             </h5>
                                         </MDBCardText>
                                         <MDBProgress className="rounded" >

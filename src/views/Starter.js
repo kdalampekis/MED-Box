@@ -152,7 +152,7 @@ function Starter(){
       </Row>
       <ProfileCard/>
       <Row >
-        <Col xs="10" sm="10" md="12" lg="12" xl="12">
+        <Col xs="12" sm="12" md="12" lg="12" xl="12">
           <ProjectTable/>
           <Instructions />
         </Col>

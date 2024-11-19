@@ -63,6 +63,7 @@ const ProjectTables = () => {
             <tbody>
               {users.map((data, index) => (
                   <Alert color= {getColor(data.missed)}>
+                    <tr>
                       <td>
                         <div className="d-flex align-items-center p-2">
                           <Link to={{pathname: `/profile/${data.id}`}} style={{ textDecoration: 'none' }}>
@@ -76,13 +77,15 @@ const ProjectTables = () => {
                             <div className="ms-5 mt-3">
                                 <h6 className="mb-0" style={{color:"black"}}>{data.name}</h6>
                                 <span className="text-muted">{data.email}</span>
-                                <div style={{display: "inline-block"}}>
+                                <div style={{display: "inline-block", padding:"10px"}}>
                                     <h5 className="mb-0" style={{color:"black", display: "inline-block"}}>Pills Missed</h5>
                                     <Badge color="dark" className="ms-4" style={{display: "inline-block"}}>{data.missed}</Badge>
                                 </div>
                             </div>
                         </div>
                       </td>
+                    </tr>
+                    <tr>
                       <td>
                           <div className="d-flex align-items-center p-2">
                               <h5 className="mb-0" style={{color:"black"}}>
@@ -90,6 +93,7 @@ const ProjectTables = () => {
                               </h5>
                           </div>
                       </td>
+                    </tr>
                   </Alert>
               ))}
             </tbody>

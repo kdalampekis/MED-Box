@@ -1,34 +1,18 @@
 import {Alert, Button, Card, CardBody, CardTitle, Row} from "reactstrap";
 import React, {useEffect, useState} from "react";
-import "./steps.css";
+import "../Instructions/steps.css";
 import {Link} from "react-router-dom";
 import {useParams} from "react-router";
 import axios from "axios";
 import {API_URL} from "../../api";
 
 
-export default function Step1(){
+export default function AddMachine(){
 
     const { id } = useParams();
     console.log(id);
-    const [isUser, setisUser] = useState(true)
-
-    useEffect(() => {
-        const verify = async () => {
-            try {
-                const response = await axios.get(API_URL + `verify_user/${id}/`);
-                console.log(response.data);
-                setisUser(response.data.message);
-            } catch (error) {
-                console.log(error.message);
-            }
-        };
-        verify()
-        }, []);
 
     return(
-        <>
-            {isUser ? (
                 <Card className="card">
                     <CardTitle tag="h6" className="border-bottom p-3 mb-0">
                         <Row>
@@ -63,9 +47,5 @@ export default function Step1(){
                         </div>
                     </CardBody>
                 </Card>
-                ): (
-                <Alert color="danger">You are not authorised to take this pill</Alert>
-            )}
-        </>
     )
 }

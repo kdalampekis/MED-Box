@@ -167,6 +167,8 @@ export default function Pill() {
                                 >
                                     Empty
                                 </Button>
+                                <Button outline color="info">Load</Button>
+
                             </MDBCardBody>
                         </MDBCard>
                     </MDBCol>

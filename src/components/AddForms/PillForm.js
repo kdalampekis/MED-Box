@@ -11,6 +11,7 @@ import {
     Input, Alert
 } from "reactstrap";
 import React, {useState} from "react";
+import {Link} from "react-router-dom";
 import axios from "axios";
 import {API_URL} from "../../api";
 import FormAlarm from "./FormAlarm";
@@ -19,6 +20,8 @@ const PillForm = () => {
 
     const [full, setFull] = useState(false);
     const [message, setMessage] = useState('');
+    const [id, setId] = useState('');
+    const [inv, setInv] = useState('');
 
 
     const handleSubmit = (event) => {
@@ -69,13 +72,81 @@ const PillForm = () => {
                 if (response.data.full){
                     setFull(true);
                     setMessage(response.data.message);
-
+                }
+                else{
+                    console.log(response.data.id);
+                    setFull(false);
+                    setInv(response.data.counter);
+                    setId(response.data.id);
                 }
             })
             .catch((error) => {
                console.log(error);
             });
     };
+
+     const reset = () =>{
+        axios.post(API_URL+ `after_insert_pill/${id}/`)
+        .then(response => {
+            console.log(response.data.message);
+            window.location.href = "";
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+
+    if (inv === 0){
+        reset();
+    }
+
+   
+
+    console.log(inv);
+
+
+
+    const handlePillInsert = () => {
+        axios.post(API_URL+ `insert_pill/${id}/`)
+        .then(response => {
+            console.log(response.data.message);
+            setInv(inv-1);
+          })
+          .catch(error => {
+            console.log(error);
+          });
+        
+    };
+
+    if (!full && id){
+        return (
+        <Card className="card">
+        <CardTitle tag="h6" className="border-bottom p-3 mb-0">
+            <Row>
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="blue"
+                     className="bi bi-water" viewBox="0 0 16 16">
+                    <path
+                        d="M.036 3.314a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 3.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 6.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 9.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.757-.703a.5.5 0 0 1-.278-.65z"/>
+                </svg>
+                <span><h2 style={{textAlign: "center"}}>Insert the pills in the machine</h2></span>
+            </Row>
+        </CardTitle>
+        <CardBody>
+            <div style={{textAlign: "center"}}>
+                <p style={{fontSize: "20px"}}>Insert the pill and then press next to insert another</p>
+            </div>
+            <hr style={{color: "white"}}/>
+            <div className="button-group" style={{padding: "20px"}}>
+                <div className="btn2">
+                    <Button className="btn" color="info" size="lg" onClick={handlePillInsert}>
+                        Next
+                    </Button>
+                </div>
+            </div>
+        </CardBody>
+    </Card>
+        )
+    }
 
 
     return (
@@ -132,7 +203,7 @@ const PillForm = () => {
                                 </Input>
                             </FormGroup>
                             <FormGroup>
-                                <Label for="weight">Phone Number</Label>
+                                <Label for="weight">Weight</Label>
                                 <Input id="weight" name="weight" placeholder="25mg" type="number" />
                             </FormGroup>
                             <FormGroup check>

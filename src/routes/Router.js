@@ -28,6 +28,7 @@ const Calendar = lazy(() => import("../components/profile/Calendar"));
 const Login = lazy(() => import("../components/AddForms/Login"));
 const Step1 = lazy(() => import("../components/Instructions/Step1"));
 const Step2 = lazy(() => import("../components/Instructions/Step2"));
+const AddMachine = lazy(() => import("../components/AddForms/AddMachine"));
 
 
 
@@ -52,6 +53,7 @@ const ThemeRoutes = [
       { path: "/pill/:id", element: <Pill />},
       { path: "/time", exact: true, element: <Time /> },
       { path: "/calendar", exact: true, element: <Calendar /> },
+      { path: "/addpill/:id/", element: <AddMachine /> },
       { path: "/about", exact: true, element: <About /> },
       { path: "/alerts", exact: true, element: <Alerts /> },
       { path: "/badges", exact: true, element: <Badges /> },
@@ -61,8 +63,6 @@ const ThemeRoutes = [
       { path: "/table", exact: true, element: <Tables /> },
       { path: "/forms", exact: true, element: <Forms /> },
       { path: "/breadcrumbs", exact: true, element: <Breadcrumbs /> },
-
-
     ],
   },
 ];

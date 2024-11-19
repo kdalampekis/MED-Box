@@ -10,8 +10,6 @@ const Comments = () => {
     const { id } = useParams();
     const [comments, setComments] = useState([]);
 
-
-
     useEffect(() => {
         axios.get(API_URL+`get_comments/${id}/`)
             .then(response => {
@@ -53,7 +51,6 @@ const Comments = () => {
                                 <td>
                                     <h6>{comment.commentText}</h6>
                                 </td>
-                                <td style={{color:"black"}}>6 minutes ago</td>
                             </tr>
                     ))}
                         </tbody>
