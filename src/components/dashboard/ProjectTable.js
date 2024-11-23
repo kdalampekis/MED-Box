@@ -8,7 +8,7 @@ import { API_URL } from '../../api';
 import "./projecttable.css";
 
 function getColor(pills_missed){
-  if(pills_missed <= 1){
+  if(pills_missed === 0){
     return "success";
   }else if (pills_missed <= 2){
     return "warning";
@@ -22,12 +22,7 @@ function getWarningText(pi){
         return "Great job! It looks like you took all your pills as prescribed. " +
             "Keep up the good work and remember to continue taking your medication on time " +
             "for optimal results."
-    }
-    else if(pi <= 3){
-        return "Hi there! It looks like you missed taking some pill. " +
-            "Don't worry, but please try to take your medication as prescribed " +
-            "to ensure the best results.";
-    }else if (pi <= 4){
+    }else if (pi <= 2){
         return "Hey, it seems you missed taking quite a few pills. Please be careful and take your medication as prescribed to avoid any complications. " +
             "Remember that missing doses can impact the effectiveness of your treatment.";
     }else {
