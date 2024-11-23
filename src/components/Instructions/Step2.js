@@ -1,29 +1,11 @@
 import {Button, Card, CardBody, CardTitle, Row} from "reactstrap";
-import React, {useEffect, useState} from "react";
+import React from "react";
 import "./steps.css";
 import {Link} from "react-router-dom";
-import axios from "axios";
-import {API_URL} from "../../api";
 import {useParams} from "react-router";
 export default function Step2(){
 
     const { id } = useParams();
-    console.log(id);
-    const[takenData, sendTakenData] = useState(true);
-
-
-    useEffect(() => {
-        if (takenData){
-            axios.post(API_URL + `take_medication/${id}/`)
-                .then(response => {
-                    console.log(response.data);
-                    window.location.href = "/";
-                })
-                .catch(error => {
-                    console.log(error);
-                })
-        }
-    } ,[]);
 
     return(
         <Card className="card">
@@ -57,9 +39,11 @@ export default function Step2(){
                         </Link>
                     </div>
                     <div className="btn2">
-                        <Button className="btn" color="info" size="lg" onClick={() => sendTakenData(true)}>
-                            Give me 
-                        </Button>
+                        <Link to={{pathname: `/step3/${id}`}} style={{textDecoration: "none"}}>
+                            <Button className="btn" color="info" size="lg">
+                                Continue to Face ID
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             </CardBody>

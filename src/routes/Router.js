@@ -28,6 +28,7 @@ const Calendar = lazy(() => import("../components/profile/Calendar"));
 const Login = lazy(() => import("../components/AddForms/Login"));
 const Step1 = lazy(() => import("../components/Instructions/Step1"));
 const Step2 = lazy(() => import("../components/Instructions/Step2"));
+const Step3 = lazy(() => import("../components/Instructions/Step3"));
 const AddMachine = lazy(() => import("../components/AddForms/AddMachine"));
 
 
@@ -44,6 +45,7 @@ const ThemeRoutes = [
       { path: "/login", exact: true, element: <Login/>},
       { path: "/step1/:id", element: <Step1 /> },
       { path: "/step2/:id", element: <Step2 /> },
+      { path: "/step3/:id", element: <Step3 /> },
       { path: "/pillForm", exact: true, element: <PillForm/> },
       { path: "/userForm", exact: true, element: <UserForm/> },
       { path: "/pillPerForm/:id", element: <PillPerForm/> },
