@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
 import { API_URL } from '../api';
 import { Howl, Howler } from 'howler';
-import {Link, Navigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function PopUp() {
     const [show, setShow] = useState(false);
@@ -17,6 +17,7 @@ function PopUp() {
         src: [soundSrc],
         html5: true
     });
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchNextUser = async () => {
@@ -32,7 +33,6 @@ function PopUp() {
 
         fetchNextUser();
     }, []);
-
 
     useEffect(() => {
         let timerId;
@@ -60,13 +60,12 @@ function PopUp() {
     const handleClose = () => {
         setShow(false);
         sound.unload();
-
     };
 
     const handleOk = () => {
         setShow(false);
         sound.unload();
-
+        navigate(`/step1/${alarmId}`);
     };
 
     if (error) {
@@ -78,15 +77,13 @@ function PopUp() {
             {show && user && (
                 <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Time to take {user.pill_name}</Modal.Title>
+                        <Modal.Title>{user.full_name}</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>It's {alarmTimeFormatted}! Time for {user.full_name} to take {user.pill_name}.</Modal.Body>
+                    <Modal.Body>You have scheduled a medication intake fpr this time {alarmTimeFormatted}</Modal.Body>
                     <Modal.Footer>
-                        <Link to={{ pathname: `/step1/${alarmId}`}}>
-                            <Button className="btn" outline color="success" onClick={handleOk}>
-                                OK
-                            </Button>
-                        </Link>
+                        <Button className="btn" outline color="success" onClick={handleOk}>
+                            OK
+                        </Button>
                         <Button className="btn" outline color="danger" onClick={handleClose}>
                             Close
                         </Button>

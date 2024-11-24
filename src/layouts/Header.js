@@ -13,7 +13,7 @@ import {
   Dropdown,
   Button,
 } from "reactstrap";
-import { ReactComponent as LogoWhite } from "../assets/images/logos/xtremelogowhite.svg";
+import { ReactComponent as LogoWhite } from "../assets/images/logos/Screenshot-2024-11-24-162614.svg";
 import { useCookies } from "react-cookie";
 
 
