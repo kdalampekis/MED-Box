@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import {useParams} from "react-router";
 import axios from "axios";
 import { API_URL } from '../../api';
+import {MDBCardImage} from "mdb-react-ui-kit";
 
 
 const Comments = () => {
@@ -34,13 +35,12 @@ const Comments = () => {
                                 <td>
                                     <div className="d-flex align-items-center p-2">
                                         <Link to={{pathname: `/profile/${comment.user.id}`}} style={{ textDecoration: 'none' }}>
-                                            <img
-                                                src={comment.user.imgSrc}
-                                                className="rounded-circle"
+                                            <MDBCardImage
+                                                src= {comment.user.imgSrc}
                                                 alt="avatar"
-                                                width="45"
-                                                height="45"
-                                            />
+                                                className="rounded-circle"
+                                                style={{ width: '150px' }}
+                                                fluid />
                                         </Link>
                                         <div className="ms-5">
                                             <h6 className="mb-0" style={{color:"black"}}>{comment.user.full_name}</h6>
