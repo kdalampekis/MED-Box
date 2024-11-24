@@ -23,6 +23,11 @@ const navigation = [
     href: "/pillCard",
     icon: "bi bi-bell",
   },
+  {
+    title: "Instructions",
+    href: "/instructions",
+    icon: "bi bi-card-text",
+  },
 ];
 
 const Sidebar = () => {
